@@ -1,0 +1,54 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 26rpx;
+} 
+
+page{
+  background-color: #ededed;
+}
+
+/**
+* 无边框样式
+**/
+.null-border{
+  border: none !important;
+}
+
+/**
+** 支出时的文字颜色
+**/
+.pay-style-color{
+  color: #000;
+}
+.pay-style-color:before{
+  content: "-";
+}
+
+/**
+** 收入时的文字颜色
+**/
+.income-style-color{
+  color: #f1b73a;
+}
+.income-style-color:before{
+  content: "+";
+}
+/**
+** 支出时的背景颜色
+**/
+.pay-style-bk-color{
+  background-color: #3eb575;
+}
+/**
+** 收入时的背景颜色
+**/
+.income-style-bk-color{
+  background-color: #f1b73a;
+}

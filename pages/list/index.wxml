@@ -1,0 +1,108 @@
+<!--pages/home.wxml-->
+<wxs src="../../utils/util.wxs" module ="utils"/>
+<view class="container">
+  <view class="top">
+    <view class="search-line">
+      <view class="search-div" bindtap="showAmmountPickerPopup">
+        <lable class="ammount-button">全部类型</lable>
+        <label>|</label>
+        <image src="/resource/img/apps-fill.svg"/>
+      </view>
+    </view>
+    <view class="statistics-line">
+      <lable class="calendar" bindtap="showMonthPickerPopup">{{utils.strConvertDate(queryDate)}}</lable>
+      <image class="calendar-down" src="/resource/img/arrow-down-s-fill.svg"/>
+      <label class="pay">12.00</label>
+      <label class="income">345.00</label>
+    </view>
+  </view>
+  <view class="content">
+    <view class="card">
+      <view class="card-title">
+        <div class="trade-date">9月22日 昨天</div>
+        <div class="currency-number">
+          <label class="pay">
+            3.80
+          </label>
+          <label class="income">
+            0.00
+          </label>
+        </div>
+      </view>
+      <view class="card-item">
+        <div class="trade-logo  pay-style-bk-color">
+          <image src="/resource/img/train-fill.svg"/>
+        </div>
+        <div class="trade-details">
+          <div class="currency-detail">
+            <div class="amount">出行开支</div>
+            <div class="detail">20:12 | 支付宝</div>
+          </div>
+          <div class="currency-number pay-style-color">123.00</div>
+        </div>
+      </view>
+      <view class="card-item">
+        <div class="trade-logo income-style-bk-color">
+          <image src="/resource/img/reimburse.svg"/>
+        </div>
+        <div class="trade-details">
+          <div class="currency-detail">
+            <div class="amount">退款</div>
+            <div class="detail">20:12 | 支付宝</div>
+          </div>
+          <div class="currency-number income-style-color">100.00</div>
+        </div>
+      </view>
+      <view class="card-item">
+        <div class="trade-logo pay-style-bk-color">
+          <image src="/resource/img/transfer.svg"/>
+        </div>
+        <div class="trade-details null-border">
+          <div class="currency-detail">
+            <div class="amount">转账</div>
+            <div class="detail">20:12 | 支付宝</div>
+          </div>
+          <div class="currency-number income-style-color">100.00</div>
+        </div>
+      </view>
+    </view>
+  </view>
+  <view class="add-data">
+    <image src="/resource/img/add-data.svg"/>
+  </view>
+  <van-popup show="{{ showMonthPicker }}" bind:close="closeMonthPickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 39%">
+  <picker-month bind:onConfirm="slectMonth" defaultDate="{{queryDate}}"/>
+  </van-popup>
+  <van-popup show="{{ showAmmountPicker }}" bind:close="closeAmmountPickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
+    <view class="ammountPicker">
+      <view class="ammount-title">
+        请选择类型
+      </view>
+      <view class="all-ammount">
+        <label>全部类型</label>
+      </view>
+      <view class="ammount-tag">支出</view>
+      <view class="ammount-foreach">
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+      </view>
+      <view class="ammount-tag">收入</view>
+      <view class="ammount-foreach">
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+      </view>
+    </view>
+  </van-popup>
+</view>

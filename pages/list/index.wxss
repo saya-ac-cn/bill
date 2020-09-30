@@ -1,0 +1,240 @@
+/* pages/home.wxss */
+/**
+** 悬浮按钮
+**/
+.add-data{
+position: fixed;
+width: 80rpx;
+border-radius: 40rpx;
+height: 80rpx;
+bottom: 180rpx;
+right: 60rpx;
+box-shadow:4rpx 4rpx 4rpx 4rpx #dbdbdb;
+display: -webkit-flex; /* Safari */
+display: flex;
+justify-content:center;
+align-items:center;
+}
+.add-data>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.top{
+  background-color: #3eb575;
+  width: 100%;
+  padding-left: 30rpx;
+}
+
+.top > .search-line{
+  width: 100%;
+  height: auto;
+}
+
+.top > .search-line>.search-div{
+  color: #fff;
+  background-color: rgba(208, 236, 215,0.2);
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  align-items:center;
+  width: fit-content;
+}
+
+.top > .search-line>.search-div>.ammount-button{
+  padding: 16rpx;
+}
+
+.top > .search-line>.search-div>image{
+  padding: 16rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.top > .statistics-line{
+  color: #fff;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  align-items:center;
+}
+
+.top > .statistics-line>.calendar{}
+
+.top > .statistics-line>.calendar-down{
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.top > .statistics-line>.pay:before {
+  content: "总支出￥";
+}
+.top > .statistics-line>.income:before {
+  content: "总收入￥";
+}
+.top > .statistics-line>.income{
+  margin-left: 20rpx;
+}
+
+
+
+.content{
+  width: 100%;
+}
+
+.content>.card{
+  border-radius: 18rpx;
+  margin-top: 16rpx;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+  height: auto;
+  background-color: #fff;
+}
+
+.content>.card>.card-title{
+  background-color: #fbfbfb;
+  height: 120rpx;
+  border-radius: 18rpx 18rpx 0rpx 0rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.content>.card>.card-title>.trade-date{
+  margin-left: 30rpx;
+  font-size: 28rpx;
+}
+
+.content>.card>.card-title>.currency-number{
+  margin-right: 30rpx;
+}
+.content>.card>.card-title>.currency-number>.pay{
+  font-weight: 700;
+}
+
+.content>.card>.card-title>.currency-number>.income{
+  font-weight: 700;
+  margin-left: 20rpx;
+}
+
+.content>.card>.card-title>.currency-number>.pay:before {
+  background-color: #ededed;
+  color: #bdbdbd;
+  content: "支";
+  font-weight: 500;
+}
+
+.content>.card>.card-title>.currency-number>.income:before {
+  background-color: #ededed;
+  color: #bdbdbd;
+  content: "收";
+  font-weight: 500;
+}
+
+.content>.card>.card-item{
+  height: 120rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.content>.card>.card-item>.trade-logo{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.content>.card>.card-item>.trade-logo>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.content>.card>.card-item>.trade-details{
+  flex: 1;
+  margin-left: 30rpx;
+  padding-top: 14rpx;
+  padding-bottom: 24rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:space-between;
+  border-bottom:2rpx solid #dbdbdb;
+}
+
+.content>.card>.card-item>.trade-details>.currency-detail{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction:column;
+  flex: 1;
+}
+
+.content>.card>.card-item>.trade-details>.currency-number{
+  width: 200rpx;
+  font-weight: 700;
+  font-size: 30rpx;
+  text-align: right;
+}
+
+.content>.card>.card-item>.trade-details>.currency-detail>.amount{
+  color: #000;
+  margin-bottom: 12rpx;
+}
+
+.content>.card>.card-item>.trade-details>.currency-detail>.detail{
+  color: #dbdbdb;
+}
+
+.ammountPicker>.ammount-title{
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border-bottom:2rpx solid #dbdbdb;
+}
+.ammountPicker>.all-ammount{
+  margin-top: 80rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+
+.ammountPicker>.all-ammount>label{
+  background-color: #3eb575;
+  color: #fff;
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  font-size: 30rpx;
+}
+
+.ammountPicker>.ammount-tag{
+  margin-top: 60rpx;
+  padding-left: 40rpx;
+  color: #dbdbdb;
+  font-size: 26rpx;
+}
+
+.ammountPicker>.ammount-foreach{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items:center;
+}
+
+.ammountPicker>.ammount-foreach>.ammount-foreach-item{
+  width: 30%;
+  background-color: #fbfbfb;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  padding-bottom: 16rpx;
+  text-align: center;
+}

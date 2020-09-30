@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/list/index",
+    "pages/statistics/index",
+    "pages/none/index",
+    "pages/index/index",
+    "pages/authen/index",
+    "pages/me/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#3eb575",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "记账本",
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#ededed"
+  },
+  "style": "v2",
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#3eb575",
+    "borderStyle": "black",
+    "backgroundColor": "#fbfbfb",
+    "list": [
+      {
+        "selectedIconPath": "/resource/img/tabbar/bill-line-select.png",
+        "iconPath": "/resource/img/tabbar/bill-line.png",
+        "pagePath": "pages/list/index",
+        "text": "明细"
+      },
+      {
+        "selectedIconPath": "/resource/img/tabbar/pie-chart-line-select.png",
+        "iconPath": "/resource/img/tabbar/pie-chart-line.png",
+        "pagePath": "pages/statistics/index",
+        "text": "统计"
+      },
+      {
+        "selectedIconPath": "/resource/img/tabbar/settings-line-select.png",
+        "iconPath": "/resource/img/tabbar/settings-line.png",
+        "pagePath": "pages/me/index",
+        "text": "设置"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

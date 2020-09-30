@@ -1,0 +1,18 @@
+<!--component/picker-month/index.wxml-->
+<view class="picker-month">
+  <view class="title">
+    {{title}}
+  </view>
+  <view class="month-foreach">
+    <view class="year-foreach-item" wx:for="{{years}}" wx:key="year" wx:for-item="year">
+        <view class="year">
+          {{year.year}}年
+        </view>
+        <view class="month-foreach">
+          <view class="month-foreach-item" bindtap="onConfirm" data-value="{{year.year+'-'+month}}" style="background-color:{{ (initDate===(year.year+'-'+month))?'#3eb575':'#fbfbfb;'}}" wx:for="{{year.month}}" wx:key="month" wx:for-item="month">
+            {{(month+1)+'月'}}
+          </view>
+        </view>
+    </view>
+  </view>
+</view>

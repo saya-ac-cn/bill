@@ -1,0 +1,75 @@
+<!--pages/statistics/index.wxml-->
+<view class="container">
+  <view class="schema">
+    <div class="calendar" value="{{ date }}" bindtap="onDisplay">
+      <lable class="calendar-label">2020年9月</lable>
+      <label class="calendar-line">|</label>
+      <image src="/resource/img/calendar.svg"/>
+    </div>
+    <div class="pay-text">共支出</div>
+    <div class="pay-number">123.00</div>
+    <div class="income-text">共收入</div>
+    <div class="income-number">123.00</div>
+  </view>
+  <view class="detail">
+    <view class="structure">
+      <view class="structure-schema">
+        <div class="structure-schema-text">收支构成</div>
+        <div class="structure-schema-div">
+          <label class="pay-desc">支出</label>
+          <label class="income-desc">收入</label>
+        </div>
+      </view>
+      <view class="structure-item">
+        <div class="structure-icon-pay">
+           <image src="/resource/img/train-fill.svg"/>
+        </div>
+        <div class="structure-content-pay">
+          <label class="structure-ammount">交通出行</label>
+          <div class="structure-chart">
+              <label class="percent-label">25.00%</label>
+              <progress class="progress-chart" percent="80" color="#3eb575" active stroke-width="5" />
+              <label class="structure-chart-value">231.00</label>
+          </div>
+        </div>
+      </view>
+    </view>
+    <view class="compared">
+      <view class="compared-schema">
+        <div class="compared-schema-text">月度对比</div>
+        <div class="compared-schema-div">
+          <label class="pay-desc">支出</label>
+          <label class="income-desc">收入</label>
+        </div>
+      </view>
+      <view class="compared-chart">
+        <canvas style="width:100%" canvas-id="columnCanvas" disable-scroll="true" class="canvas"></canvas>
+      </view>
+    </view>
+    <view class="sorting">
+      <view class="sorting-schema">8月支出排行</view>
+      <view class="sorting-view">
+        <view class="sorting-item">
+          <label class="sorting-item-index">1</label>
+          <view class="sorting-item-value">
+            <div class="trade-logo  pay-style-bk-color">
+              <image src="/resource/img/train-fill.svg"/>
+            </div>
+            <div class="trade-details">
+              <div class="currency-detail">
+                <div class="currency-amount">出行开支</div>
+                <div class="currency-detail">支付宝</div>
+              </div>
+              <div class="currency-number">
+                <label class="currency-number-value pay-style-color">123.00</label>
+                <label class="currency-number-time">8月5日 18:04</label>
+              </div>
+            </div>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-calendar defaultDate="{{currentDate}}" min-date="{{ minDate }}" max-date="{{ maxDate }}" show="{{ show }}" title="请选择时间" poppable="{{ true }}" close-on-click-overlay="{{false}}" color="#3eb575" bind:close="onClose" bind:confirm="onConfirm" />
+
+</view>

@@ -1,0 +1,39 @@
+var utils = {    
+  formatTime: function(date) {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+    return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  },
+  formatNumber: function (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  },
+  toFix: function (value) {       
+      return value.toFixed(2) // 此处2为保留两位小数，保留几位小数，这里写几    
+  },
+  toStr: function (value) {       
+      return value.toString()
+  },
+  toNum: function (value) {       
+      return value.toNumber()
+  },
+  strConvertDate: function (value) {
+    // var date = new Date();会报错，提示 Unexpected identifier Date
+    // 必须使用他家的
+    var date = getDate(value);
+    return date.getFullYear()+"年"+(date.getMonth()+1)+"月"
+  }
+}
+
+module.exports = {   
+  formatTime: utils.formatTime,
+  formatNumber: utils.formatNumber,
+  strConvertDate: utils.strConvertDate,
+  toFix: utils.toFix,
+  toStr: utils.toStr,
+  toNum: utils.toNum,//暴露接口调用
+}

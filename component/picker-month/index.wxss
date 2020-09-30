@@ -1,0 +1,41 @@
+/* component/picker-month/index.wxss */
+
+.picker-month{
+}
+
+.picker-month>.title{
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border-bottom:2rpx solid #dbdbdb;
+}
+
+.month-foreach{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  margin-top: 20rpx;
+}
+
+.month-foreach>.year-foreach-item>.year{
+  text-align: center;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.month-foreach>.year-foreach-item>.month-foreach{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items:center;
+}
+
+.month-foreach>.year-foreach-item>.month-foreach>.month-foreach-item{
+  text-align: center;
+  width: 22%;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  margin-right: 16rpx;
+  margin-top: 16rpx;
+}
