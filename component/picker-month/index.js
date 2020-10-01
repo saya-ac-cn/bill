@@ -18,19 +18,21 @@ Component({
     defaultDate: {
       type: String,
       // 请传入正常下标0开始
-      value: (new Date().getFullYear()+"-"+(new Date().getMonth()))
+      value: null,
+      observer: function(newVal, oldVal) {
+        console.log("defaultDate",newVal)
+        // 可能会存在死循环的问题
+        this.setData({initDate:newVal})
+      }
     },
+    // 日期范围传入的是时间戳
     minDate: {
-      type: null,
-      value: new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() - 6,
-        new Date().getDate()
-      )
+      type: Number,
+      value: null
     },
     maxDate: {
-      type: null,
-      value: new Date(),
+      type: Number,
+      value: null
     },
   },
 
@@ -45,11 +47,58 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    initDate: function(){
+      console.log(this.properties.maxDate,this.properties.minDate,this.properties.defaultDate)
+      //得到起始时间
+      let endDate = new Date(this.properties.maxDate)
+      //console.log(new Date(endDate))
+      let startDate = new Date(this.properties.minDate)
+      // 初始化默认时间
+      this.setData({
+        initDate:this.properties.defaultDate
+      })
+      let years = new Array();
+      if(endDate.getFullYear() === startDate.getFullYear()){
+        // 两个时间没有跨年
+        let months = new Array();
+        for(var startMonth = startDate.getMonth();startMonth<=endDate.getMonth();startMonth++){
+          months.push(startMonth);
+        }
+        years.push({year:startDate.getFullYear(),month:months})
+      }else{
+        // 跨年
+        for(var start = startDate.getFullYear();start<=endDate.getFullYear();start++){
+          let months = new Array();
+          let startMonth = 0
+          let endMonth = 11
+          // 如果是第一年
+          if( start === startDate.getFullYear()){
+            // 开始构造到年底
+            startMonth = startDate.getMonth()
+            endMonth = 11
+          }else if(start === endDate.getFullYear()){
+            // 年初构造到结束
+            startMonth = 0
+            endMonth = endDate.getMonth()
+          }else{
+            // 构造一年
+            startMonth = 0
+            endMonth = 11
+          }
+          for(startMonth;startMonth<=endMonth;startMonth++){
+            months.push(startMonth);
+          }
+          years.push({year:start,month:months})
+        }
+      }
+      this.setData({years})
+    },
     onConfirm: function(e) {
       // 自定义组件向父组件传值
       let _this = this
       // 这里的月份是从1开始的
       let initDate = e.target.dataset.value
+      console.log("-------",initDate)
       _this.setData({initDate})
       let val = {val: initDate}
       // myevent自定义名称事件，父组件中使用
@@ -68,51 +117,8 @@ attached:function(){
     console.log('Component-1 >> attached');
 },
 ready:function(){
-    // 在组件布局完成后执行，此时可以获取节点信息
-    //得到起始时间
-    let endDate = new Date(this.properties.maxDate)
-    //console.log(new Date(endDate))
-    let startDate = new Date(this.properties.minDate)
-    // 初始化默认时间
-    this.setData({
-      initDate:(new Date().getFullYear()+"-"+(new Date().getMonth()))
-    })
-    let years = new Array();
-    if(endDate.getFullYear() === startDate.getFullYear()){
-      // 两个时间没有跨年
-      let months = new Array();
-      for(var startMonth = startDate.getMonth();startMonth<=endDate.getMonth();startMonth++){
-        months.push(startMonth);
-      }
-      years.push({year:startDate.getFullYear(),month:months})
-    }else{
-      // 跨年
-      for(var start = startDate.getFullYear();start<=endDate.getFullYear();start++){
-        let months = new Array();
-        let startMonth = 0
-        let endMonth = 11
-        // 如果是第一年
-        if( start === startDate.getFullYear()){
-          // 开始构造到年底
-          startMonth = startDate.getMonth()
-          endMonth = 11
-        }else if(start === endDate.getFullYear()){
-          // 年初构造到结束
-          startMonth = 0
-          endMonth = endDate.getMonth()
-        }else{
-          // 构造一年
-          startMonth = 0
-          endMonth = 11
-        }
-        for(startMonth;startMonth<=endMonth;startMonth++){
-          months.push(startMonth);
-        }
-        years.push({year:start,month:months})
-      }
-    }
-    this.setData({years})
-    console.log('Component-1 >> ready',years);
+    this.initDate();
+    console.log('Component-1 >> ready');
 },
 show:function(){
   console.log('Component-1 >> show');
@@ -146,6 +152,9 @@ lifetimes:{
 pageLifetimes:{
     // 组件所在页面的生命周期声明对象，目前仅支持页面的show和hide两个生命周期
     show:function(){
+        this.initDate();
+       
+        console.log('Component-1 pageLifetimes >> Show', this.properties);
         console.log('Component-1 pageLifetimes >> Show');
     },
     hide:function(){

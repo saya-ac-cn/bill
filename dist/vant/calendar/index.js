@@ -33,9 +33,14 @@ VantComponent({
       type: String,
       value: '确定',
     },
+    zIndex: {
+      type: Number,
+      value:100
+    },	
     rangePrompt: String,
     defaultDate: {
       type: [Number, Array],
+      value: Date.now(),
       observer(val) {
         this.setData({ currentDate: val });
         this.scrollIntoView();

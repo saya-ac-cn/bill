@@ -26,6 +26,19 @@ var utils = {
     // 必须使用他家的
     var date = getDate(value);
     return date.getFullYear()+"年"+(date.getMonth()+1)+"月"
+  },
+  toDate: function (value) {
+    return getDate(value)
+  },
+  toTimestamp: function (value){
+    var date = (null !== value && "" !== value)?getDate(value):getDate();
+    return date.getTime()
+  },
+  timestampAdd: function (time,flog){
+    var date = getDate(time);
+    var year = date.getFullYear();
+    var month = date.getMonth()+flog;
+    return getDate(year,month,1).getTime()
   }
 }
 
@@ -36,4 +49,7 @@ module.exports = {
   toFix: utils.toFix,
   toStr: utils.toStr,
   toNum: utils.toNum,//暴露接口调用
+  toDate: utils.toDate,
+  toTimestamp: utils.toTimestamp,
+  timestampAdd: utils.timestampAdd
 }

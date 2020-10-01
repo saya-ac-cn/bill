@@ -9,7 +9,7 @@ Page({
     // 是否显示月份选择器
     showMonthPicker: false,
     // 用户查询的月份
-    queryDate: 12,
+    queryDate: null,
     // 是否摘要选择器
     showAmmountPicker: false
   },
@@ -25,7 +25,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({queryDate:new Date()})
+    this.setData({queryDate:new Date().getFullYear()+"-"+(new Date().getMonth()+1)})
   },
 
   /**
@@ -80,11 +80,10 @@ Page({
   slectMonth: function (e) {
     // 这里的月份是从1开始的
     let queryDate = new Date()
+    console.log("====",e.detail.val)
     if(null !== e.detail.val &&'' !== e.detail.val){
-      let dates = (e.detail.val).split("-")
-      queryDate = new Date(dates[0],dates[1],1)
+      this.setData({queryDate:e.detail.val})
     }
-    this.setData({queryDate})
     this.closeMonthPickerPopup()
   },
   showAmmountPickerPopup() {

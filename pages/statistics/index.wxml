@@ -43,7 +43,7 @@
         </div>
       </view>
       <view class="compared-chart">
-        <canvas style="width:100%" canvas-id="columnCanvas" disable-scroll="true" class="canvas"></canvas>
+        <canvas style="width:100%;display:{{showCanvas?'none':'display'}}" canvas-id="columnCanvas" disable-scroll="true"/>
       </view>
     </view>
     <view class="sorting">
@@ -70,6 +70,6 @@
       </view>
     </view>
   </view>
-  <van-calendar defaultDate="{{currentDate}}" min-date="{{ minDate }}" max-date="{{ maxDate }}" show="{{ show }}" title="请选择时间" poppable="{{ true }}" close-on-click-overlay="{{false}}" color="#3eb575" bind:close="onClose" bind:confirm="onConfirm" />
+  <van-calendar defaultDate="{{currentDate}}" minDate="{{minDate}}" maxDate="{{maxDate}}" z-index="{{200000}}" show="{{ show }}" title="请选择时间" poppable="{{ true }}" close-on-click-overlay="{{false}}" color="#3eb575" show-confirm	="{{false}}" bind:close="onClose" bind:confirm="onConfirm" />
 
 </view>

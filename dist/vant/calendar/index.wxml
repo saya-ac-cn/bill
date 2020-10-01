@@ -7,6 +7,7 @@
   custom-class="van-calendar__popup--{{ position }}"
   close-icon-class="van-calendar__close-icon"
   show="{{ show }}"
+  z-index="{{zIndex}}"
   round="{{ round }}"
   position="{{ position }}"
   closeable="{{ showTitle || showSubtitle }}"
