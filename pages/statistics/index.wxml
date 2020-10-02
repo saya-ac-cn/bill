@@ -20,7 +20,7 @@
           <label class="income-desc">收入</label>
         </div>
       </view>
-      <view class="structure-item">
+      <view class="structure-item" data-id="{{234}}" bindtap="hrefToInfoPage">
         <div class="structure-icon-pay">
            <image src="/resource/img/train-fill.svg"/>
         </div>

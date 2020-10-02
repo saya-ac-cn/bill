@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/edit-trade/index",
+    "pages/statistics-info/index",
     "pages/list/index",
     "pages/statistics/index",
     "pages/none/index",

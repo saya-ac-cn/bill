@@ -1,0 +1,37 @@
+<!--pages/edit-trade/index.wxml-->
+<view class="container">
+  <view class="trade">
+    <view class="trade-ammount">
+      <div class="trade-ammount-logo  income-style-bk-color">
+        <image src="/resource/img/train-fill.svg"/>
+      </div>
+      <label>退款</label>
+    </view>
+    <view class="trade-number income-style-color">1000.00</view>
+    <view class="trade-infos">
+      <view class="trade-info">
+        <label>交易时间</label>
+        <text>2020年10月02日 13:57:12</text>
+      </view>
+      <view class="trade-info">
+        <label>支出金额</label>
+        <text>0.00</text>
+      </view>
+      <view class="trade-info">
+        <label>收入金额</label>
+        <text>0.00</text>
+      </view>
+    </view>
+    <view class="trade-op">
+      <div class="trade-op-delete">
+        <image src="/resource/img/op/delete-bin-6-line.svg"/>
+        删除
+      </div>
+      <label class="column-line"></label>
+      <div class="trade-op-edit">
+        <image src="/resource/img/op/edit-box-line.svg"/>
+        编辑
+      </div>
+    </view>
+  </view>
+</view>

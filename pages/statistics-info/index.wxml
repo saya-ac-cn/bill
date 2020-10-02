@@ -1,0 +1,42 @@
+<!--pages/statistics-info/index.wxml-->
+<view class="container">
+  <view class="schema">
+    <label class="schema-title">9月住房缴费共支出</label>
+    <label class="schema-number">5678</label>
+  </view>
+  <view class="list">
+    <view class="list-title">详情</view>
+    <view class="list-container">
+      <view class="list-item" bindtap="hrefToEditPage" data-id="{{1}}">
+            <div class="trade-logo  pay-style-bk-color">
+              <image src="/resource/img/train-fill.svg"/>
+            </div>
+            <div class="trade-details">
+              <div class="currency-detail">
+                <div class="currency-amount">出行开支</div>
+                <div class="currency-detail">支付宝</div>
+              </div>
+              <div class="currency-number">
+                <label class="currency-number-value pay-style-color">123.00</label>
+                <label class="currency-number-time">8月5日 18:04</label>
+              </div>
+            </div>
+      </view>
+      <view class="list-item" bindtap="hrefToEditPage" data-id="{{1}}">
+            <div class="trade-logo  income-style-bk-color">
+              <image src="/resource/img/train-fill.svg"/>
+            </div>
+            <div class="trade-details">
+              <div class="currency-detail">
+                <div class="currency-amount">退款</div>
+                <div class="currency-detail">支付宝</div>
+              </div>
+              <div class="currency-number">
+                <label class="currency-number-value income-style-color">600.00</label>
+                <label class="currency-number-time">8月13日 13:37</label>
+              </div>
+            </div>
+      </view>
+    </view>
+  </view>
+</view>

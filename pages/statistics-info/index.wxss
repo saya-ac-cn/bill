@@ -1,0 +1,125 @@
+/* pages/statistics-info/index.wxss */
+.schema{
+  width: 100%;
+  padding-top: 80rpx;
+  padding-bottom: 80rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.schema>.schema-title{
+  color: #dbdbdb;
+  margin-top: 50rpx;
+  margin-bottom: 40rpx;
+}
+
+.schema>.schema-number{
+  color: #000;
+  font-size: 60rpx;
+  font-weight: 700;
+}
+
+.schema>.schema-number:before{
+  content: "￥";
+  font-size: 50rpx;
+  vertical-align: top;
+}
+
+.list{
+  flex: 1;
+  background-color: #fff;
+  margin-top: 16rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-left: 80rpx;
+}
+
+.list>.list-title{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  font-size: 30rpx;
+  color: #dbdbdb;
+  padding-left: 20rpx;
+  border-left:6rpx solid #dbdbdb;
+}
+
+.list>.list-container{
+  border-top:0.5px solid #dbdbdb;
+}
+
+.list>.list-container>.list-item{
+  padding-top: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.list>.list-container>.list-item>.trade-logo{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.list>.list-container>.list-item>.trade-logo>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.list>.list-container>.list-item>.trade-details{
+  flex: 1;
+  margin-left: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:space-between;
+  padding-bottom: 30rpx;
+  border-bottom:0.5px solid #dbdbdb;
+}
+
+.list>.list-container>.list-item>.trade-details>.currency-detail{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction:column;
+  flex: 1;
+}
+
+.list>.list-container>.list-item>.trade-details>.currency-number{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction:column;
+  width: 200rpx;
+  padding-right: 60rpx;
+}
+
+.list>.list-container>.list-item>.trade-details>.currency-number>.currency-number-value{
+  font-weight: 700;
+  font-size: 30rpx;
+  text-align: right;
+}
+
+.list>.list-container>.list-item>.trade-details>.currency-number>.currency-number-time{
+  color: #dbdbdb;
+  text-align: right;
+}
+
+
+.list>.list-container>.list-item>.trade-details>.currency-detail>.currency-amount{
+  color: #000;
+  margin-bottom: 12rpx;
+}
+
+.list>.list-container>.list-item>.trade-details>.currency-detail>.currency-detail{
+  color: #dbdbdb;
+}

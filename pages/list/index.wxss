@@ -166,7 +166,7 @@ align-items:center;
   display: -webkit-flex; /* Safari */
   display: flex;
   justify-content:space-between;
-  border-bottom:2rpx solid #dbdbdb;
+  border-bottom:0.5px solid #dbdbdb;
 }
 
 .content>.card>.card-item>.trade-details>.currency-detail{

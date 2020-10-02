@@ -1,0 +1,101 @@
+/* pages/edit-trade/index.wxss */
+.trade{
+  width: -webkit-fill-available;
+  border-radius: 10rpx;
+  margin: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.trade>.trade-ammount{
+  margin-top: 70rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction: row;
+}
+
+.trade>.trade-ammount>.trade-ammount-logo{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.trade>.trade-ammount>.trade-ammount-logo>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.trade>.trade-ammount>label{
+  margin-left: 20rpx;
+  color: #dbdbdb;
+}
+
+.trade>.trade-number{
+  margin-top: 50rpx;
+  color: #000;
+  font-size: 60rpx;
+  font-weight: 700;
+}
+
+.trade>.trade-infos{
+  width: inherit;
+  margin: 50rpx 30rpx 30rpx 30rpx;
+  padding-bottom: 50rpx;
+  padding-left: 30rpx;
+  border-bottom:2rpx solid #dbdbdb;
+}
+
+.trade>.trade-infos>.trade-info{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.trade>.trade-infos>.trade-info>label{
+  width: 25%;
+  color: #dbdbdb;
+}
+
+.trade>.trade-op{
+  width: inherit;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0rpx 30rpx 30rpx 30rpx;
+}
+
+.trade>.trade-op>.column-line{
+  width: 2rpx;
+  height: 50rpx;
+  background-color: #dbdbdb;
+}
+.trade>.trade-op>div{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+.trade>.trade-op image{
+width: 48rpx;
+height: 48rpx;
+margin-right: 16rpx;
+}
+
+.trade>.trade-op>.trade-op-delete{
+  color: #e23a0a;
+}

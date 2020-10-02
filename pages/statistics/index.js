@@ -133,5 +133,11 @@ Page({
         width: wx.getSystemInfoSync().windowWidth-50,
         height: 160
     });
+  },
+  hrefToInfoPage(e){
+    // 跳转到详情页面
+    wx.navigateTo({
+      url:"/pages/statistics-info/index?id="+e.currentTarget.dataset.id
+   })
   }
 })
