@@ -10,7 +10,7 @@ Page({
     showMonthPicker: false,
     // 用户查询的月份
     queryDate: null,
-    // 是否摘要选择器
+    // 是否显示摘要选择器
     showAmmountPicker: false
   },
 

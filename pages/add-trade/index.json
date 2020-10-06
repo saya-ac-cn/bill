@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-calendar": "../../dist/vant/calendar/index",
+    "van-popup": "../../dist/vant/popup/index",
+    "ammount":"../../component/ammount/index"
+  }
+}

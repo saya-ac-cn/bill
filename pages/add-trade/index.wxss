@@ -1,0 +1,104 @@
+/* pages/add-trade/index.wxss */
+.header{
+  width: -webkit-fill-available;
+}
+
+.header>.header-title{
+  padding: 36rpx 30rpx;
+  font-size: 30rpx;
+  color: rgba(69, 90, 100, 0.6);
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header>.header-title>image{
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.header>.header-content{
+background-color: #fff;
+padding: 0rpx 30rpx;
+}
+
+.header>.header-content>.header-line{
+  color: #646566;
+  text-align: left;
+  padding: 30rpx 0rpx;
+  border-bottom:0.5px solid #dbdbdb;
+}
+
+.header>.header-content>.header-line>.header-line-label{
+  margin-right: 40rpx;
+}
+
+.card-view{
+  width: -webkit-fill-available;
+}
+
+.card-view>.card-title{
+  padding: 36rpx 30rpx;
+  font-size: 30rpx;
+  color: rgba(69, 90, 100, 0.6);
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-view>.card-title>image{
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.card-view>.card-item{
+  background-color: #fff;
+}
+
+.card-view>.card-item>.card-title{
+  color: #646566;
+  text-align: left;
+  padding: 20rpx 0rpx;
+  background-color: #fbfbfb;
+  padding: 30rpx;
+  font-size: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-view>.card-item>.card-title>image{
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.card-view>.card-item>.card-line{
+  color: #646566;
+  text-align: left;
+  margin: 0rpx 30rpx;
+  padding: 30rpx 0rpx;
+  border-bottom:0.5px solid #dbdbdb;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card-view>.card-item>.card-line>.radio{
+  transform: scale(.5)
+}
+
+.card-view>.card-item>.card-line>.card-line-label{
+  margin-right: 40rpx;
+}
+
+.card-view>.card-item>.card-line>input{
+  flex: 1;
+}

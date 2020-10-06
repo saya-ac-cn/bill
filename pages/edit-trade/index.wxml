@@ -1,4 +1,5 @@
 <!--pages/edit-trade/index.wxml-->
+<wxs src="../../utils/util.wxs" module ="utils"/>
 <view class="container">
   <view class="trade">
     <view class="trade-ammount">
@@ -7,7 +8,7 @@
       </div>
       <label>退款</label>
     </view>
-    <view class="trade-number income-style-color">1000.00</view>
+    <view class="trade-number income-style-color">{{utils.toFix(1000)}}</view>
     <view class="trade-infos">
       <view class="trade-info">
         <label>交易时间</label>
@@ -15,11 +16,11 @@
       </view>
       <view class="trade-info">
         <label>支出金额</label>
-        <text>0.00</text>
+        <text>{{utils.toFix(0)}}</text>
       </view>
       <view class="trade-info">
         <label>收入金额</label>
-        <text>0.00</text>
+        <text>{{utils.toFix(0)}}</text>
       </view>
     </view>
     <view class="trade-op">
@@ -28,10 +29,69 @@
         删除
       </div>
       <label class="column-line"></label>
-      <div class="trade-op-edit">
+      <div class="trade-op-edit" bindtap="showTradePickerPopup">
         <image src="/resource/img/op/edit-box-line.svg"/>
         编辑
       </div>
     </view>
   </view>
+  <view class="list">
+    <view class="list-title-line">
+      <label>明细</label>
+      <image bindtap="showTradeInfoPickerPopup" src="/resource/img/op/add-line.svg"/>
+    </view>
+    <view class="list-container">
+      <view wx:for="{{datas}}" wx:key="item" wx:for-item="item" class="list-item">
+          <label class="list-item-name">{{item.name}}</label>
+          <label class="list-item-number pay-style-color">{{utils.toFix(item.number)}}</label>
+      </view>
+    </view>
+  </view>
 </view>
+
+<!-- 编辑父账单 -->
+<van-popup show="{{ showTradePicker }}" bind:close="closeTradePickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
+  <view class="trade-picker">
+    <view class="trade-picker-title">
+      编辑账单
+    </view>
+    <view class="trade-picker-label">
+      选择一个日期
+    </view>
+    <view class="trade-picker-input">
+      2020-10-01
+    </view>
+    <view class="trade-picker-label">
+      选择一个类别
+    </view>
+    <view class="trade-picker-input">
+      出行开支
+    </view>
+    <ammount/>
+  </view>
+</van-popup>
+
+<!-- 添加&编辑子账单 -->
+<van-popup show="{{ showTradeInfoPicker }}" bind:close="closeTradeInfoPickerPopup" close-on-click-overlay="{{true}}" safe-area-inset-bottom="{{false}}" position="top" custom-style="height: 35%;background-color: #ededed;padding-bottom: 30rpx;">
+  <view class="tradeInfo-view">
+    <view class="tradeInfo-title-line">添加明细</view>
+    <view class="tradeInfo-container">
+      <view class="tradeInfo-input-line">
+        <label>类别</label>
+        <radio-group>
+          <radio class="radio" value="1" checked="true"/>收入
+          <radio class="radio" value="2" />支出
+        </radio-group>
+      </view>
+      <view class="tradeInfo-input-line">
+        <label>金额</label>
+        <input type="number"/>
+      </view>
+      <view class="tradeInfo-input-line null-border">
+        <label>备注</label>
+        <input type="text"/>
+      </view>
+    </view>
+    <view class="button-view">确定</view>
+  </view>
+</van-popup>

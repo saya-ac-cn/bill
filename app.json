@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/edit-trade/index",
-    "pages/statistics-info/index",
+    "pages/add-trade/index",
     "pages/list/index",
     "pages/statistics/index",
+    "pages/statistics-info/index",
+    "pages/edit-trade/index",
     "pages/none/index",
     "pages/index/index",
     "pages/authen/index",

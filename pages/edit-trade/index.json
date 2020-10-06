@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-popup": "../../dist/vant/popup/index",
+    "ammount":"../../component/ammount/index"
+  },
   "navigationBarBackgroundColor": "#ededed",
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "",

@@ -1,11 +1,19 @@
 // pages/edit-trade/index.js
 Page({
 
-  /**
+  /**https://detail.vip.com/detail-1710614926-6918168878902755534.html
+   * https://detail.vip.com/detail-1710613157-6918398157033709893.html
    * 页面的初始数据
    */
   data: {
-
+    // 是否显示编辑弹出层(父)
+    showTradePicker: false,
+    showTradeInfoPicker: false,
+    datas:[
+      {id:1,name:'菜籽油',number:49.00},
+      {id:2,name:'伊利鲜牛奶',number:38.00},
+      {id:3,name:'保鲜碗',number:11.00}
+    ]
   },
 
   /**
@@ -62,5 +70,22 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  showTradePickerPopup() {
+    this.setData({ showTradePicker: true });
+  },
+
+  closeTradePickerPopup() {
+    this.setData({ showTradePicker: false });
+  },
+
+  showTradeInfoPickerPopup() {
+    this.setData({ showTradeInfoPicker: true });
+  },
+
+  closeTradeInfoPickerPopup() {
+    this.setData({ showTradeInfoPicker: false });
+  },
+
 })

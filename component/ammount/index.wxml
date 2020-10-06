@@ -1,0 +1,25 @@
+<!--component/ammount/index.wxml-->
+<view class="ammount-component">
+      <view class="ammount-tag">支出</view>
+      <view class="ammount-foreach">
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+      </view>
+      <view class="ammount-tag">收入</view>
+      <view class="ammount-foreach">
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+        <view class="ammount-foreach-item">1</view>
+      </view>
+    </view>
