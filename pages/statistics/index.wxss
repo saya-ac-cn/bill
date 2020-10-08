@@ -166,41 +166,6 @@
   margin-right: 10rpx;
 }
 
-.detail>.compared{
-  margin-top: 80rpx;
-  margin-left: 50rpx;
-  margin-right: 50rpx;
-  padding-bottom: 80rpx;
-}
-
-.detail>.compared>.compared-schema{
-  display: -webkit-flex; /* Safari */
-  display: flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.detail>.compared>.compared-schema>.compared-schema-text{
-  font-size: 32rpx;
-}
-.detail>.compared>.compared-schema>.compared-schema-div>.pay-desc{
-  background-color: rgba(62, 181, 117, 0.2);
-  margin-right: 20rpx;
-  padding: 10rpx 20rpx 10rpx 20rpx;
-}
-
-.detail>.compared>.compared-schema>.compared-schema-div>.income-desc{
-  background-color: rgba(241, 183, 58, 0.2);
-  padding: 10rpx 20rpx 10rpx 20rpx;
-}
-
-.detail>.compared>.compared-chart{
-margin-top: 80rpx;
-display: -webkit-flex; /* Safari */
-display: flex;
-justify-content:center;
-align-items:center;
-}
 
 .detail>.sorting{
   margin-top: 80rpx;
@@ -208,7 +173,7 @@ align-items:center;
   margin-right: 50rpx;
 }
 .detail>.sorting>.sorting-schema{
-font-size: 24rpx;
+font-size: 32rpx;
 }
 .detail>.sorting>.sorting-view{
   margin-top: 80rpx;

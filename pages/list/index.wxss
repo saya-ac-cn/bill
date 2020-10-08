@@ -44,6 +44,12 @@ align-items:center;
   padding: 16rpx;
 }
 
+.top > .search-line>.search-div>.column-line{
+  width: 2rpx;
+  height: 30rpx;
+  background-color: #dbdbdb;
+}
+
 .top > .search-line>.search-div>image{
   padding: 16rpx;
   width: 36rpx;

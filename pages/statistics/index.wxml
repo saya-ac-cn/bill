@@ -34,18 +34,6 @@
         </div>
       </view>
     </view>
-    <view class="compared">
-      <view class="compared-schema">
-        <div class="compared-schema-text">月度对比</div>
-        <div class="compared-schema-div">
-          <label class="pay-desc">支出</label>
-          <label class="income-desc">收入</label>
-        </div>
-      </view>
-      <view class="compared-chart">
-        <canvas style="width:100%;display:{{showCanvas?'none':'display'}}" canvas-id="columnCanvas" disable-scroll="true"/>
-      </view>
-    </view>
     <view class="sorting">
       <view class="sorting-schema">8月支出排行</view>
       <view class="sorting-view">

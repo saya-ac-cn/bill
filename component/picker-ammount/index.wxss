@@ -1,0 +1,80 @@
+/* component/ammount/index.wxss */
+
+/**
+** 支出时的背景颜色（由于全局的样式无法使用，只有重新定义）
+**/
+.pay-style-bk-color{
+  background-color: #3eb575;
+}
+/**
+** 收入时的背景颜色（由于全局的样式无法使用，只有重新定义）
+**/
+.income-style-bk-color{
+  background-color: #f1b73a;
+}
+
+/**
+** 支出时的文字颜色
+**/
+.pay-style-color{
+  color: #000;
+}
+
+
+/**
+** 收入时的文字颜色
+**/
+.income-style-color{
+  color: #f1b73a;
+}
+
+
+.ammount-component>.ammount-tag{
+  margin-top: 60rpx;
+  padding-left: 40rpx;
+  color: #dbdbdb;
+  font-size: 26rpx;
+}
+
+.ammount-component>.ammount-foreach{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items:center;
+}
+
+.ammount-component>.ammount-foreach>.ammount-foreach-item{
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  padding-bottom: 16rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+}
+
+.ammount-component>.ammount-foreach>.ammount-foreach-item>.ammount-logo{
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 6rpx;
+  border-radius: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.ammount-component>.ammount-foreach>.ammount-foreach-item>.ammount-logo>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.ammount-component>.ammount-foreach>.ammount-foreach-item>.ammount-text{
+  font-size: 20rpx;
+}

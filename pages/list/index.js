@@ -93,5 +93,11 @@ Page({
   closeAmmountPickerPopup() {
     this.setData({ showAmmountPicker: false });
   },
+  hrefAddPage(){
+    // 跳转到详情页面
+    wx.navigateTo({
+      url:"/pages/add-trade/index"
+   })
+  }
   
 })

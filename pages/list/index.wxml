@@ -5,7 +5,7 @@
     <view class="search-line">
       <view class="search-div" bindtap="showAmmountPickerPopup">
         <lable class="ammount-button">全部类型</lable>
-        <label>|</label>
+        <label class="column-line"></label>
         <image src="/resource/img/apps-fill.svg"/>
       </view>
     </view>
@@ -67,7 +67,7 @@
       </view>
     </view>
   </view>
-  <view class="add-data">
+  <view class="add-data" bindtap="hrefAddPage">
     <image src="/resource/img/add-data.svg"/>
   </view>
   <van-popup show="{{ showMonthPicker }}" bind:close="closeMonthPickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 39%">

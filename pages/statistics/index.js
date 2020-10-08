@@ -1,5 +1,4 @@
 // pages/statistics/index.js
-var wxCharts = require('../../dist/wx-charts/wxcharts-min.js');
 Page({
 
   /**
@@ -46,7 +45,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.displayChart()
   },
 
   /**
@@ -87,10 +85,7 @@ Page({
     this.setData({ show: true,showCanvas:true });
   },
   onClose() {
-    this.setData({ show: false,showCanvas:false },
-      () => {
-        this.displayChart()
-      });
+    this.setData({ show: false,showCanvas:false });
   },
   formatDate(date) {
     date = new Date(date);
@@ -102,38 +97,7 @@ Page({
     });
     this.onClose()
   },
-  displayChart(){
-      new wxCharts({
-        canvasId: 'columnCanvas',
-        type: 'column',
-        legend: false,
-        categories: ['1月', '2月', '3月', '4月', '5月', '6月'],
-        animation: true,
-        series: [{
-            data: [322, 415, 213, 563, 333, 342],
-            color: '#3eb575',
-            format: function (val) {
-                return '￥'+val.toFixed(2);
-            }
-        }],
-        yAxis: {
-          disabled: true,
-          gridColor: '#fff',
-          min: 0
-        },
-        xAxis: {
-          disableGrid: true,
-          type: 'calibration',
-        },
-        extra: {
-          column: {
-              width: 20
-          }
-      },
-        width: wx.getSystemInfoSync().windowWidth-50,
-        height: 160
-    });
-  },
+
   hrefToInfoPage(e){
     // 跳转到详情页面
     wx.navigateTo({

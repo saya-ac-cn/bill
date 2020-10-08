@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "van-popup": "../../dist/vant/popup/index",
-    "ammount":"../../component/ammount/index"
+    "ammount":"../../component/picker-ammount/index"
   },
   "navigationBarBackgroundColor": "#ededed",
   "navigationBarTextStyle": "black",
