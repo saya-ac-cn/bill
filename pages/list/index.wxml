@@ -71,7 +71,7 @@
     <image src="/resource/img/add-data.svg"/>
   </view>
   <van-popup show="{{ showMonthPicker }}" bind:close="closeMonthPickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 39%">
-  <picker-month bind:onConfirm="slectMonth" maxDate="{{utils.toTimestamp(null)}}" minDate="{{utils.timestampAdd(utils.toTimestamp(null),-6)}}" defaultDate="{{queryDate}}"/>
+  <picker-month bind:onConfirm="selectMonth" maxDate="{{utils.toTimestamp(null)}}" minDate="{{utils.timestampAdd(utils.toTimestamp(null),-6)}}" defaultDate="{{queryDate}}"/>
   </van-popup>
   <van-popup show="{{ showAmmountPicker }}" bind:close="closeAmmountPickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
     <view class="ammountPicker">

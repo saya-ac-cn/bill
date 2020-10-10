@@ -13,7 +13,9 @@
       </view>
       <view class="header-line">
         <label class="header-line-label">交易摘要</label>
-        <label bindtap="showTradeAmmountPopup">交通出行</label>
+        <label bindtap="showTradeAmmountPopup">
+          {{(!dealAmount)?'请选择摘要':dealAmount.tag}}
+        </label>
       </view>
       <view class="header-line null-border">
         <label class="header-line-label">交易时间</label>
@@ -55,5 +57,5 @@
 
 <!-- 弹出摘要 -->
 <van-popup show="{{ showTradeAmmount }}" bind:close="closeTradeAmmountPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
-  <ammount/>
+  <ammount bind:onConfirm="selectAmmount"/>
 </van-popup>

@@ -77,7 +77,7 @@ Page({
   },
 
   // 接受子组件的传值
-  slectMonth: function (e) {
+  selectMonth: function (e) {
     // 这里的月份是从1开始的
     let queryDate = new Date()
     console.log("====",e.detail.val)

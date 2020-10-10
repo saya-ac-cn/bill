@@ -1,57 +1,22 @@
 <!--component/ammount/index.wxml-->
 <view class="ammount-component">
-      <view class="ammount-tag">支出</view>
-      <view class="ammount-foreach">
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo pay-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text pay-style-color">交通出行</label>
-        </view>
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo pay-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text pay-style-color">交通出行</label>
-        </view>
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo pay-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text pay-style-color">交通出行</label>
-        </view>
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo pay-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text pay-style-color">交通出行</label>
-        </view>
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo pay-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text pay-style-color">交通出行</label>
-        </view>
-      </view>
-      <view class="ammount-tag">收入</view>
-      <view class="ammount-foreach">
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo income-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text income-style-color">交通出行</label>
-        </view>
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo income-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text income-style-color">交通出行</label>
-        </view>
-        <view class="ammount-foreach-item">
-          <label class="ammount-logo income-style-bk-color">
-            <image src="/resource/img/ammount/train-fill.svg"/>
-          </label>
-          <label class="ammount-text income-style-color">交通出行</label>
-        </view>
-      </view>
+  <view class="ammount-tag">支出</view>
+  <view class="ammount-foreach">
+    <view class="ammount-foreach-item" wx:for="{{payAmmount}}" wx:key="id" wx:for-item="item" data-id="{{item.id}}" data-tag="{{item.tag}}" bindtap="selectAmmount">
+      <label class="ammount-logo {{(selected.id===item.id)?'pay-style-bk-color':''}}">
+        <image src="{{logo[item.logo]}}"/>
+      </label>
+      <label class="ammount-text">{{item.tag}}</label>
     </view>
+  </view>
+  <view class="ammount-tag">收入</view>
+  <view class="ammount-foreach">
+    <view class="ammount-foreach-item" data-id="{{item.id}}" data-tag="{{item.tag}}" bindtap="selectAmmount" wx:for="{{incomeAmmount}}" wx:key="id" wx:for-item="item">
+      <label class="ammount-logo {{(selected.id===item.id)?'income-style-bk-color':''}}">
+        <image src="{{logo[item.logo]}}"/>
+      </label>
+      <label class="ammount-text">{{item.tag}}</label>
+    </view>
+  </view>
+  <view class="confirm" bindtap="onConfirm">确定</view>
+</view>

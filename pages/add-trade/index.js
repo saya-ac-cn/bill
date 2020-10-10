@@ -20,7 +20,7 @@ Page({
     // 交易方式
     dealType:3,
     // 交易摘要
-    dealAmount:1,
+    dealAmount:null,
     // 交易时间
     tradeDate:null
   },
@@ -165,5 +165,9 @@ Page({
   showTradeAmmountPopup:function() {
     this.setData({ showTradeAmmount: true });
   },
-
+  // 接受子组件的传值
+  selectAmmount: function (e) {
+    this.setData({dealAmount:e.detail.val})
+    this.closeTradeAmmountPopup()
+  },
 })
