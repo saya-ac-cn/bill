@@ -79,7 +79,7 @@ getUserInfo: function (e) {
     app.userInfo = e.detail.userInfo//全局保存userInfo信息
     app.hasUserInfo = true
     wx.switchTab({//跳转到home页面
-      url: '/pages/home/home',
+      url: '/pages/home/index',
     })
   } else {
     //用户按了拒绝按钮

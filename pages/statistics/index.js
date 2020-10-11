@@ -5,17 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 日期选择后的值
-    date: '',
-    // 是否显示日期选择
-    show: false,
-    // 可选日期的范围(当前日期至上一个月)
-    minDate: null,
-    maxDate:  null,
-    // 默认选择当前日期
-    currentDate: null,
-    // 由于canvas层级太高，弹窗都遮不住，用if控制显示
-    showCanvas: false
+    // 是否显示月份选择器
+    showMonthPicker: false,
+    // 用户查询的月份
+    queryDate: null,
   },
 
   /**
@@ -30,15 +23,7 @@ Page({
    */
   onReady: function () {
     // 全部使用时间戳
-    this.setData({
-      minDate: (new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() - 1,
-        new Date().getDate()
-      )).getTime(),
-      maxDate:  (new Date()).getTime(),
-      currentDate: (new Date()).getTime()
-    })
+    this.setData({queryDate:new Date().getFullYear()+"-"+(new Date().getMonth()+1)})
   },
 
   /**
@@ -81,21 +66,30 @@ Page({
   onShareAppMessage: function () {
 
   },
-  onDisplay() {
-    this.setData({ show: true,showCanvas:true });
+  hrefToEditPage(e){
+    // 跳转到编辑页面
+    wx.navigateTo({
+      url:"/pages/edit-trade/index?tradeId="+e.currentTarget.dataset.id
+   })
   },
-  onClose() {
-    this.setData({ show: false,showCanvas:false });
+  
+  showMonthPickerPopup() {
+    this.setData({ showMonthPicker: true });
   },
-  formatDate(date) {
-    date = new Date(date);
-    return `${date.getMonth() + 1}/${date.getDate()}`;
+
+  closeMonthPickerPopup() {
+    this.setData({ showMonthPicker: false });
   },
-  onConfirm(event) {
-    this.setData({
-      date: this.formatDate(event.detail),
-    });
-    this.onClose()
+
+  // 接受子组件的传值
+  selectMonth: function (e) {
+    // 这里的月份是从1开始的
+    let queryDate = new Date()
+    console.log("====",e.detail.val)
+    if(null !== e.detail.val &&'' !== e.detail.val){
+      this.setData({queryDate:e.detail.val})
+    }
+    this.closeMonthPickerPopup()
   },
 
   hrefToInfoPage(e){

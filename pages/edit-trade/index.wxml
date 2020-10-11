@@ -6,13 +6,17 @@
       <div class="trade-ammount-logo  income-style-bk-color">
         <image src="/resource/img/train-fill.svg"/>
       </div>
-      <label>退款</label>
+      <label>{{(!trade.dealAmount)?'-':trade.dealAmount.tag}}</label>
     </view>
     <view class="trade-number income-style-color">{{utils.toFix(1000)}}</view>
     <view class="trade-infos">
       <view class="trade-info">
         <label>交易时间</label>
-        <text>2020年10月02日 13:57:12</text>
+        <text>{{trade.tradeDate}}</text>
+      </view>
+      <view class="trade-info">
+        <label>交易方式</label>
+        <text> {{(!trade.dealType)?'-':trade.dealType.tag}}</text>
       </view>
       <view class="trade-info">
         <label>支出金额</label>
@@ -41,7 +45,7 @@
       <image bindtap="showTradeInfoPickerPopup" src="/resource/img/op/add-line.svg"/>
     </view>
     <view class="list-container">
-      <view wx:for="{{datas}}" wx:key="item" wx:for-item="item" class="list-item">
+      <view wx:for="{{datas}}" wx:key="index" wx:for-item="item" class="list-item {{(index === datas.length-1)?'null-border':''}}">
           <label class="list-item-name">{{item.name}}</label>
           <label class="list-item-number pay-style-color">{{utils.toFix(item.number)}}</label>
       </view>
@@ -50,24 +54,30 @@
 </view>
 
 <!-- 编辑父账单 -->
-<van-popup show="{{ showTradePicker }}" bind:close="closeTradePickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
+<van-popup show="{{ showTradePicker }}" bind:close="closeTradePickerPopup" close-on-click-overlay="{{false}}"	 round position="bottom" custom-style="height: 50%">
   <view class="trade-picker">
     <view class="trade-picker-title">
       编辑账单
     </view>
     <view class="trade-picker-label">
+      交易方式
+    </view>
+    <view class="trade-picker-input" bindtap="showDealTypePopup">
+      {{(!trade.dealType)?'请选择交易方式':trade.dealType.tag}}
+    </view>
+    <view class="trade-picker-label">
       选择一个日期
     </view>
-    <view class="trade-picker-input">
-      2020-10-01
+    <view class="trade-picker-input" bindtap="displayCalendar">
+      {{trade.tradeDate}}
     </view>
     <view class="trade-picker-label">
       选择一个类别
     </view>
-    <view class="trade-picker-input">
-      出行开支
+    <view class="trade-picker-input" bindtap="showTradeAmmountPopup">
+      {{(!trade.dealAmount)?'请选择摘要':trade.dealAmount.tag}}
     </view>
-    <ammount/>
+    <view class="trade-confirm">确定</view>
   </view>
 </van-popup>
 
@@ -94,4 +104,17 @@
     </view>
     <view class="button-view">确定</view>
   </view>
+</van-popup>
+
+<!-- 弹出日历 -->
+<van-calendar defaultDate="{{utils.toTimestamp(trade.tradeDate)}}" minDate="{{minDate}}" maxDate="{{maxDate}}" show="{{ showCalendar }}" title="请选择时间" poppable="{{ true }}" close-on-click-overlay="{{false}}" color="#3eb575" show-confirm	="{{true}}" bind:close="closeCalendar" bind:confirm="confirmCalendar" />
+
+<!-- 弹出摘要 -->
+<van-popup show="{{ showTradeAmmount }}" bind:close="closeTradeAmmountPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
+  <ammount bind:onConfirm="selectAmmount" default-data="{{trade.dealAmount}}"/>
+</van-popup>
+
+<!-- 弹出方式 -->
+<van-popup show="{{ showDealType }}" bind:close="closeDealTypePopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 30%">
+  <method bind:onConfirm="selectMethod" default-data="{{trade.dealType}}"/>
 </van-popup>

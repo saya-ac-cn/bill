@@ -1,0 +1,13 @@
+<!--component/picker-method/index.wxml-->
+<view class="method-component">
+  <view class="method-tag">支出</view>
+  <view class="method-foreach">
+    <view class="method-foreach-item" wx:for="{{list}}" wx:key="id" wx:for-item="item" data-id="{{item.id}}" data-tag="{{item.tag}}" bindtap="selectMethod">
+      <label class="method-logo {{(selected.id===item.id)?'selected-bk-color':''}}">
+        <image src="{{logo[item.logo]}}"/>
+      </label>
+      <label class="method-text">{{item.tag}}</label>
+    </view>
+  </view>
+  <view class="confirm" bindtap="onConfirm">确定</view>
+</view>

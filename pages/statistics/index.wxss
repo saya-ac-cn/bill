@@ -134,9 +134,7 @@
   justify-content:space-between;
   align-items:center;
 }
-.detail>.structure>.structure-item>.structure-content-pay:after{
-  content: ">";
-}
+
 .detail>.structure>.structure-item .structure-ammount{
   flex: 1;
   font-size: 24rpx;

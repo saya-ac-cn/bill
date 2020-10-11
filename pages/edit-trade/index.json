@@ -1,7 +1,9 @@
 {
   "usingComponents": {
+    "van-calendar": "../../dist/vant/calendar/index",
     "van-popup": "../../dist/vant/popup/index",
-    "ammount":"../../component/picker-ammount/index"
+    "ammount":"../../component/picker-ammount/index",
+    "method":"../../component/picker-method/index"
   },
   "navigationBarBackgroundColor": "#ededed",
   "navigationBarTextStyle": "black",

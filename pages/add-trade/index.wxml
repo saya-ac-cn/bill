@@ -9,7 +9,9 @@
     <view class="header-content">
       <view class="header-line">
         <label class="header-line-label">交易方式</label>
-        <label>信用卡</label>
+        <label bindtap="showDealTypePopup">
+          {{(!dealType)?'请选择交易方式':dealType.tag}}
+        </label>
       </view>
       <view class="header-line">
         <label class="header-line-label">交易摘要</label>
@@ -57,5 +59,10 @@
 
 <!-- 弹出摘要 -->
 <van-popup show="{{ showTradeAmmount }}" bind:close="closeTradeAmmountPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
-  <ammount bind:onConfirm="selectAmmount"/>
+  <ammount bind:onConfirm="selectAmmount" />
+</van-popup>
+
+<!-- 弹出方式 -->
+<van-popup show="{{ showDealType }}" bind:close="closeDealTypePopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 30%">
+  <method bind:onConfirm="selectMethod"/>
 </van-popup>

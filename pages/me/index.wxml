@@ -1,2 +1,30 @@
 <!--pages/me/index.wxml-->
-<text>pages/me/index.wxml</text>
+<view class="container">
+  <view class="header">
+    <label class="user-logo">
+      <image src="{{userInfo.avatarUrl}}"/>
+    </label>
+    <label class="user-name">
+      {{userInfo.nickName}}
+    </label>
+  </view>
+  <view class="setting">
+    <view class="setting-title">
+      <label>设置</label>
+    </view>
+    <view class="setting-content">
+      <view class="setting-line">
+        <label>上次登录</label>
+        <label>2020-10-11 21:29:18</label>
+      </view>
+      <view class="setting-line">
+        <label>技术支持</label>
+        <label>power by shmily</label>
+      </view>
+      <view class="setting-line null-border">
+        <label>版本信息</label>
+        <label>1.0.0</label>
+      </view>
+    </view>
+  </view>
+</view>  

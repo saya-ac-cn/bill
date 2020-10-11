@@ -1,0 +1,67 @@
+/* component/picker-method/index.wxss */
+
+.selected-bk-color{
+  background-color: #3eb575 !important;
+}
+
+.method-component>.method-tag{
+  margin-top: 60rpx;
+  padding-left: 40rpx;
+  color: #dbdbdb;
+  font-size: 26rpx;
+}
+
+.method-component>.method-foreach{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items:center;
+}
+
+.method-component>.method-foreach>.method-foreach-item{
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  padding-bottom: 16rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+}
+
+.method-component>.method-foreach>.method-foreach-item>.method-logo{
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 6rpx;
+  border-radius: 30rpx;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background-color: #ededed;
+}
+
+.method-component>.method-foreach>.method-foreach-item>.method-logo>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.method-component>.method-foreach>.method-foreach-item>.method-text{
+  font-size: 20rpx;
+  color: #dbdbdb;
+}
+
+.method-component>.confirm{
+  background-color: #3eb575;
+  margin: 30rpx 100rpx;
+  padding: 20rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #fff;
+}

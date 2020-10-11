@@ -16,9 +16,12 @@ Page({
     ],
     // 是否显示日期选择
     showCalendar: false,
+    // 显示交易摘要选择
     showTradeAmmount: false,
+    // 显示交易方式选择
+    showDealType: false,
     // 交易方式
-    dealType:3,
+    dealType:null,
     // 交易摘要
     dealAmount:null,
     // 交易时间
@@ -45,7 +48,9 @@ Page({
       )).getTime(),
       maxDate:  (new Date()).getTime(),
       currentDate: (new Date()).getTime(),
-      tradeDate:formatDateTime(new Date(),'Y-M-D')
+      tradeDate:formatDateTime(new Date(),'Y-M-D'),
+      dealAmount:{id:1,tag:'服饰美容'},
+      dealType:{id:3,tag:'支付宝'}
     })
   },
 
@@ -165,9 +170,22 @@ Page({
   showTradeAmmountPopup:function() {
     this.setData({ showTradeAmmount: true });
   },
+
+  closeDealTypePopup:function() {
+    this.setData({ showDealType: false });
+  },
+
+  showDealTypePopup:function() {
+    this.setData({ showDealType: true });
+  },
+  
   // 接受子组件的传值
   selectAmmount: function (e) {
     this.setData({dealAmount:e.detail.val})
     this.closeTradeAmmountPopup()
+  },
+  selectMethod: function (e) {
+    this.setData({dealType:e.detail.val})
+    this.closeDealTypePopup()
   },
 })

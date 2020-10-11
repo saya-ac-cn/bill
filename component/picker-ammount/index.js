@@ -4,9 +4,13 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    defaultDate:{
-      type: Number,
-      value: 1
+    defaultData:{
+      type: null,
+      value: 1,
+      observer: function(newVal, oldVal) {
+        // 可能会存在死循环的问题
+        this.setData({selected:newVal})
+      }
     }
   },
 

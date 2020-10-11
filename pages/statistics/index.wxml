@@ -1,8 +1,9 @@
 <!--pages/statistics/index.wxml-->
+<wxs src="../../utils/util.wxs" module ="utils"/>
 <view class="container">
   <view class="schema">
-    <div class="calendar" value="{{ date }}" bindtap="onDisplay">
-      <lable class="calendar-label">2020年9月</lable>
+    <div class="calendar" bindtap="showMonthPickerPopup">
+      <lable class="calendar-label">{{utils.strConvertDate(queryDate)}}</lable>
       <label class="calendar-line">|</label>
       <image src="/resource/img/calendar.svg"/>
     </div>
@@ -37,7 +38,7 @@
     <view class="sorting">
       <view class="sorting-schema">8月支出排行</view>
       <view class="sorting-view">
-        <view class="sorting-item">
+        <view class="sorting-item" bindtap="hrefToEditPage">
           <label class="sorting-item-index">1</label>
           <view class="sorting-item-value">
             <div class="trade-logo  pay-style-bk-color">
@@ -58,6 +59,7 @@
       </view>
     </view>
   </view>
-  <van-calendar defaultDate="{{currentDate}}" minDate="{{minDate}}" maxDate="{{maxDate}}" z-index="{{200000}}" show="{{ show }}" title="请选择时间" poppable="{{ true }}" close-on-click-overlay="{{false}}" color="#3eb575" show-confirm	="{{false}}" bind:close="onClose" bind:confirm="onConfirm" />
-
-</view>
+ </view> 
+  <van-popup show="{{ showMonthPicker }}" bind:close="closeMonthPickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 39%">
+  <picker-month bind:onConfirm="selectMonth" maxDate="{{utils.toTimestamp(null)}}" minDate="{{utils.timestampAdd(utils.toTimestamp(null),-6)}}" defaultDate="{{queryDate}}"/>
+  </van-popup>

@@ -1,14 +1,13 @@
 {
   "pages": [
-    "pages/add-trade/index",
-    "pages/list/index",
+    "pages/none/index",
+    "pages/me/index",
+    "pages/home/index",
+    "pages/edit-trade/index",
     "pages/statistics/index",
     "pages/statistics-info/index",
-    "pages/edit-trade/index",
-    "pages/none/index",
-    "pages/index/index",
-    "pages/authen/index",
-    "pages/me/index"
+    "pages/add-trade/index",
+    "pages/authen/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#3eb575",
@@ -27,7 +26,7 @@
       {
         "selectedIconPath": "/resource/img/tabbar/bill-line-select.png",
         "iconPath": "/resource/img/tabbar/bill-line.png",
-        "pagePath": "pages/list/index",
+        "pagePath": "pages/home/index",
         "text": "明细"
       },
       {

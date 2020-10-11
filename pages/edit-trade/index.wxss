@@ -152,13 +152,21 @@ margin-right: 16rpx;
   align-items: center;
 }
 
-.list>.list-container>.list-item>.list-item-name{
-  letter-spacing: 6rpx;
-}
+.list>.list-container>.list-item>.list-item-name{}
 
 .list>.list-container>.list-item>.list-item-number{
   font-weight: 700;
   font-size: 30rpx;
+}
+
+.trade-picker>.trade-confirm{
+  background-color: #3eb575;
+  margin: 30rpx 100rpx;
+  padding: 20rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #fff;
 }
 
 .trade-picker>.trade-picker-title{
@@ -198,7 +206,7 @@ margin-right: 16rpx;
 .tradeInfo-view>.tradeInfo-title-line{
   font-size: 32rpx;
   font-weight: 700;
-  color: rgba(69, 90, 100, 0.6);
+  color: #323233;
   text-align: left;
   width: inherit;
   display: -webkit-flex;

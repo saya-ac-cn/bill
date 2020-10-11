@@ -36,7 +36,7 @@ Page({
         if(res.authSetting["scope.userInfo"]){//已经授权
           console.log('已授权')
           wx.switchTab({
-            url: '/pages/home/home',
+            url: '/pages/home/index',
           })
         }else{
           console.log('未授权')

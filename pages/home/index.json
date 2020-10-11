@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "van-popup": "../../dist/vant/popup/index",
+    "van-picker": "../../dist/vant/picker/index",
     "picker-month": "../../component/picker-month/index"
   }
 }

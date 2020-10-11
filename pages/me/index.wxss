@@ -1,1 +1,60 @@
 /* pages/me/index.wxss */
+.header{
+  width: -webkit-fill-available;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.header>.user-logo{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header>.user-logo>image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.header>.user-name{
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.setting{
+  width: -webkit-fill-available;
+}
+
+.setting>.setting-title{
+  padding: 36rpx 30rpx;
+  font-size: 30rpx;
+  color: rgba(69, 90, 100, 0.6);
+}
+
+.setting>.setting-content{
+  background-color: #fff;
+  padding: 0rpx 30rpx;
+}
+
+.setting>.setting-content>.setting-line{
+  color: #646566;
+  text-align: left;
+  padding: 30rpx 0rpx;
+  border-bottom:0.5px solid #dbdbdb;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -94,9 +94,15 @@ Page({
     this.setData({ showAmmountPicker: false });
   },
   hrefAddPage(){
-    // 跳转到详情页面
+    // 跳转到申报页面
     wx.navigateTo({
       url:"/pages/add-trade/index"
+   })
+  },
+  hrefToEditPage(e){
+    // 跳转到编辑页面
+    wx.navigateTo({
+      url:"/pages/edit-trade/index?tradeId="+e.currentTarget.dataset.id
    })
   }
   
