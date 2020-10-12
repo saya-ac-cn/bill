@@ -1,1 +1,66 @@
 /* pages/authen/index.wxss */
+page {
+  background-color: #fff;
+}
+
+.header{
+  width: -webkit-fill-available;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.header>.application-logo{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 3rem;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header>.application-logo>image{
+  width: 100%;
+  height: 100%;
+}
+
+.section{
+  width: -webkit-fill-available;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section>.section-content{
+  width: -webkit-fill-available;
+  margin-left: 2em;
+  margin-right: 2em;
+  border-top:0.5px solid #dbdbdb;
+  padding-top: 1em;
+}
+
+.section>.section-content>.permission{
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.section>.section-content>.permission-info{
+  margin-top: 1em;
+  font-size: 1.2em;
+  color: #dbdbdb;
+  margin-bottom: 3em;
+}
+
+.section>.section-content>button{
+  background-color: #3eb575;
+  color: #fff;
+  border-radius: 0.2em;
+}

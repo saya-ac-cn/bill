@@ -1,4 +1,15 @@
 <!--pages/authen/index.wxml-->
 <view class="container">
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  <view class="header">
+    <label class="application-logo">
+      <image src="/resource/img/application.jpg"/>
+    </label>
+  </view>
+  <view class="section">
+    <view class="section-content">
+      <view class="permission">申请获取以下用户权限</view>
+      <view class="permission-info">获得你的公开信息(昵称，头像等)</view>
+      <button lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登录 </button>
+    </view>
+  </view>
 </view>
