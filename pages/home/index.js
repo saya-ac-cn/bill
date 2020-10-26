@@ -1,4 +1,5 @@
 // pages/home.js
+import{getBillByDay} from '../../utils/request/api'
 // https://www.cnblogs.com/start2019/p/11854183.html
 Page({
 
@@ -11,7 +12,8 @@ Page({
     // 用户查询的月份
     queryDate: null,
     // 是否显示摘要选择器
-    showAmmountPicker: false
+    showAmmountPicker: false,
+    pagaData:[]
   },
 
   /**
@@ -25,7 +27,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({queryDate:new Date().getFullYear()+"-"+(new Date().getMonth()+1)})
+    const currentDate = new Date().getFullYear()+"-"+(new Date().getMonth()+1)
+    this.setData({queryDate:currentDate})
+    this.getBillByDayDate({tradeDate:currentDate})
   },
 
   /**
@@ -76,13 +80,42 @@ Page({
     this.setData({ showMonthPicker: false });
   },
 
+  getBillByDayDate: function(param){
+    getBillByDay(param).then((res) => {
+      wx.hideLoading()
+      if (0 === res.code) {
+        this.setData({pagaData:res.data})
+      }else{
+        wx.showToast({
+          title: '网络异常，请稍后重试',
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常，请稍后重试',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      })   
+      console.log("err",err);
+    });
+  },
+
   // 接受子组件的传值
   selectMonth: function (e) {
     // 这里的月份是从1开始的
-    let queryDate = new Date()
-    console.log("====",e.detail.val)
-    if(null !== e.detail.val &&'' !== e.detail.val){
-      this.setData({queryDate:e.detail.val})
+    let selectDate = e.detail.val
+    if(null !==  selectDate &&'' !== selectDate){
+      this.setData({queryDate:selectDate},function(){
+        const dates = selectDate.split("-")
+        if (dates[1] < 10 && dates[1] > 0){
+          this.getBillByDayDate({tradeDate:dates[0]+"-0"+dates[1]})
+        }else{
+          this.getBillByDayDate({tradeDate:dates[0]+"-"+dates[1]})
+        }
+      })
     }
     this.closeMonthPickerPopup()
   },

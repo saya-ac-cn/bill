@@ -34,12 +34,28 @@ Page({
     wx.getSetting({
       success(res){
         if(res.authSetting["scope.userInfo"]){//已经授权
-          console.log('已授权')
-          wx.switchTab({
-            url: '/pages/home/index',
-          })
+          const user = wx.getStorageSync('user')
+          console.log("user",user)
+          if(user && user.bind == 1){
+            // 已授权认证
+            wx.setStorage({
+              key: 'sessionId',
+              data: 'JSESSIONID='+user.sessionId,
+              success: function (res) {
+                console.log(res)
+              }
+            })            
+            wx.switchTab({
+              url: '/pages/home/index',
+            })
+          }else{
+            // 已授权，但后台还未绑定
+            wx.redirectTo({
+              url: '/pages/authen/index',
+            })
+          }
         }else{
-          console.log('未授权')
+          // 用户未授权
           wx.redirectTo({
             url: '/pages/authen/index',
           })

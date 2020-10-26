@@ -14,6 +14,10 @@ const axios = (function () {
     wxRequest(c) {
       return new Promise((resolve, reject) => {
         c = this.interceptors.request.func(c);
+        c.header = {
+          'content-type': 'application/json',
+          'Cookie': wx.getStorageSync('sessionId')
+        },
         c.url = c.url.startsWith("http") ? c.url : c.baseUrl + c.url;
         c.success = (res) => {
           resolve(this.interceptors.response.func(res));

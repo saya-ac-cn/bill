@@ -1,5 +1,10 @@
-import { mPost } from "./xhr";
+import { mGet, mPost } from "./xhr";
  
-const getArticleList = (params) => mPost("app/mock/262524/get/article/list", params);
- 
-export { getArticleList };
+// 获取用户openId
+export const getWxUserDetail = (params) => mGet("/backend/wx/user", params);
+
+// 用户登录
+export const login = (params) => mPost("/backend/login/wx",params);
+
+// 查询指定月份的账单（按天）
+export const getBillByDay = (params) => mGet("/backend/api/financial/bill/billByDay", params);

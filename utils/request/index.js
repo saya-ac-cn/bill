@@ -4,7 +4,7 @@ import axios from "./axios";
  * axios defaults 配置
  */
 axios.defaults = {
-  baseUrl: "http://rap2.taobao.org:38080/",
+  baseUrl: "http://127.0.0.1:8080",
   timeout: 60000,
 };
  
@@ -67,6 +67,7 @@ function handleCode({ data, status }) {
       return Promise.reject(new Error("请求错误"));
     },
     "401"() {
+      console.log("----------------需要重新退出--------------");
       return Promise.reject(new Error("请求未授权"));
     },
     "403"() {

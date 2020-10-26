@@ -17,52 +17,28 @@
     </view>
   </view>
   <view class="content">
-    <view class="card">
+    <view class="card" wx:for="{{pagaData}}" wx:key="tradeDate" wx:for-item="item">
       <view class="card-title">
-        <div class="trade-date">9月22日 昨天</div>
+        <div class="trade-date">{{item.tradeDate}} 昨天</div>
         <div class="currency-number">
           <label class="pay">
-            3.80
+            {{item.deposited}}
           </label>
           <label class="income">
-            0.00
+            {{item.expenditure}}
           </label>
         </div>
       </view>
-      <view class="card-item">
+      <view class="card-item" wx:for="{{item.transactionList}}" wx:key="index" wx:for-item="child">
         <div class="trade-logo  pay-style-bk-color">
           <image src="/resource/img/train-fill.svg"/>
         </div>
         <div class="trade-details" bindtap="hrefToEditPage">
-          <div class="currency-detail">
-            <div class="amount">出行开支</div>
-            <div class="detail">20:12 | 支付宝</div>
+          <div class="currency-detail {{(index ==item.transactionList.length)?'null-border':''}}">
+            <div class="amount">{{child.tradeAmountEntity.tag}}</div>
+            <div class="detail">{{child.createTime}} | {{child.tradeTypeEntity.transactionType}}</div>
           </div>
-          <div class="currency-number pay-style-color">123.00</div>
-        </div>
-      </view>
-      <view class="card-item">
-        <div class="trade-logo income-style-bk-color">
-          <image src="/resource/img/reimburse.svg"/>
-        </div>
-        <div class="trade-details" bindtap="hrefToEditPage">
-          <div class="currency-detail">
-            <div class="amount">退款</div>
-            <div class="detail">20:12 | 支付宝</div>
-          </div>
-          <div class="currency-number income-style-color">100.00</div>
-        </div>
-      </view>
-      <view class="card-item">
-        <div class="trade-logo pay-style-bk-color">
-          <image src="/resource/img/transfer.svg"/>
-        </div>
-        <div class="trade-details null-border" bindtap="hrefToEditPage">
-          <div class="currency-detail">
-            <div class="amount">转账</div>
-            <div class="detail">20:12 | 支付宝</div>
-          </div>
-          <div class="currency-number income-style-color">100.00</div>
+          <div class="currency-number pay-style-color">{{child.currencyNumber}}</div>
         </div>
       </view>
     </view>
