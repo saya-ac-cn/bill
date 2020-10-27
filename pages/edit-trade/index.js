@@ -1,5 +1,6 @@
 // pages/edit-trade/index.js
 import {formatDateTime} from "../../utils/dateTools"
+import{getBillDetail} from '../../utils/request/api'
 Page({
 
   /**https://detail.vip.com/detail-1710614926-6918168878902755534.html
@@ -14,8 +15,10 @@ Page({
     showTradePicker: false,
     // 是否显示编辑弹出层(子)
     showTradeInfoPicker: false,
+    tradeId:-1,
     trade:{
-      tradeId:-1,
+      deposited: 0,
+      expenditure: 10,
       // 交易方式
       dealType:null,
       // 交易摘要
@@ -23,24 +26,24 @@ Page({
       // 交易时间
       tradeDate:null
     },
-    datas:[
-      {id:1,name:'菜籽油',number:49.00},
-      {id:2,name:'伊利鲜牛奶',number:38.00},
-      {id:3,name:'保鲜碗',number:11.00}
-    ],
+    datas:[],
     // 是否显示日期选择
     showCalendar: false,
     // 显示交易摘要选择
     showTradeAmmount: false,
     // 显示交易方式选择
     showDealType: false,
+    pagaData:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const tradeId = options.tradeId
+    this.setData({ tradeId },function(){
+      this.getBillDetailDate({tradeId:tradeId})
+    });
   },
 
   /**
@@ -48,12 +51,6 @@ Page({
    */
   onReady: function () {
     this.setData({
-      trade:{
-        tradeId:-1,
-        tradeDate:formatDateTime(new Date(),'Y-M-D'),
-        dealAmount:{id:1,tag:'服饰美容'},
-        dealType:{id:3,tag:'支付宝'}
-      },
       minDate: (new Date(
         new Date().getFullYear(),
         new Date().getMonth() - 1,
@@ -103,6 +100,37 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getBillDetailDate: function(param){
+    getBillDetail(param).then((res) => {
+      wx.hideLoading()
+      if (0 === res.code) {
+        const pagaData = res.data
+        var trade = {
+          dealType: JSON.parse(JSON.stringify(pagaData.tradeTypeEntity)),
+          dealAmount: JSON.parse(JSON.stringify(pagaData.tradeAmountEntity)),
+          tradeDate: pagaData.tradeDate,
+          deposited: pagaData.deposited,
+          expenditure: pagaData.expenditure,
+        }
+        var datas = JSON.parse(JSON.stringify(pagaData.infoList))
+        this.setData({trade,datas,pagaData})
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常，请稍后重试',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      })   
+    });
   },
 
   showTradePickerPopup() {

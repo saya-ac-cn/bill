@@ -33,7 +33,7 @@
         <div class="trade-logo  pay-style-bk-color">
           <image src="/resource/img/train-fill.svg"/>
         </div>
-        <div class="trade-details" bindtap="hrefToEditPage">
+        <div class="trade-details" bindtap="hrefToEditPage" data-id="{{child.tradeId}}">
           <div class="currency-detail {{(index ==item.transactionList.length)?'null-border':''}}">
             <div class="amount">{{child.tradeAmountEntity.tag}}</div>
             <div class="detail">{{child.createTime}} | {{child.tradeTypeEntity.transactionType}}</div>

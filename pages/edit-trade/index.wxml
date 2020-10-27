@@ -16,7 +16,7 @@
       </view>
       <view class="trade-info">
         <label>交易方式</label>
-        <text> {{(!trade.dealType)?'-':trade.dealType.tag}}</text>
+        <text> {{(!trade.dealType)?'-':trade.dealType.transactionType}}</text>
       </view>
       <view class="trade-info">
         <label>支出金额</label>
@@ -46,15 +46,15 @@
     </view>
     <view class="list-container">
       <view wx:for="{{datas}}" wx:key="index" wx:for-item="item" class="list-item {{(index === datas.length-1)?'null-border':''}}">
-          <label class="list-item-name">{{item.name}}</label>
-          <label class="list-item-number pay-style-color">{{utils.toFix(item.number)}}</label>
+          <label class="list-item-name">{{item.currencyDetails}}</label>
+          <label class="list-item-number pay-style-color">{{utils.toFix(item.currencyNumber)}}</label>
       </view>
     </view>
   </view>
 </view>
 
 <!-- 编辑父账单 -->
-<van-popup show="{{ showTradePicker }}" bind:close="closeTradePickerPopup" close-on-click-overlay="{{false}}"	 round position="bottom" custom-style="height: 50%">
+<van-popup show="{{ showTradePicker }}" bind:close="closeTradePickerPopup" close-on-click-overlay="{{true}}"	 round position="bottom" custom-style="height: 50%">
   <view class="trade-picker">
     <view class="trade-picker-title">
       编辑账单

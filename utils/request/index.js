@@ -78,9 +78,8 @@ function handleCode({ data, status }) {
     },
   };
   // 有状态码但不在这个封装的配置里，就直接返回错误
-  return STATUS[status]
-    ? STATUS[status]()
-    : Promise.reject(new Error(data.data || "请求错误"));
+  // return STATUS[status]? STATUS[status](): Promise.reject(new Error(data.data || "请求错误"));
+  return STATUS[status]? STATUS[status](): Promise.reject(new Error("请求错误"));
 }
  
 export default axios;

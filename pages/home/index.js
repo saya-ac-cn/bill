@@ -87,7 +87,7 @@ Page({
         this.setData({pagaData:res.data})
       }else{
         wx.showToast({
-          title: '网络异常，请稍后重试',
+          title: res.msg,
           icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
           duration: 2000     
         })   
@@ -99,7 +99,6 @@ Page({
         icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
         duration: 2000     
       })   
-      console.log("err",err);
     });
   },
 

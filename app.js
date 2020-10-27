@@ -18,13 +18,13 @@ App({
           wx.hideLoading()
           wx.setStorageSync('user', res.data)
         }).catch((err) => {
+          wx.removeStorageSync('user')
           wx.hideLoading()
           wx.showToast({
             title: '网络异常，请稍后重试',
             icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
-            duration: 2000     
+            duration: 3000     
           })   
-          console.log("err",err);
         });
       }
     })
