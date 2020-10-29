@@ -20,7 +20,6 @@ Component({
       // 请传入正常下标0开始
       value: null,
       observer: function(newVal, oldVal) {
-        console.log("defaultDate",newVal)
         // 可能会存在死循环的问题
         this.setData({initDate:newVal})
       }

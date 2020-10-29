@@ -1,12 +1,19 @@
 var utils = {    
-  formatTime: function(date) {
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
-    const second = date.getSeconds()
+  formatDateTime: function(value) {
+    var date = getDate(value);
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var hour = date.getHours()
+    var minute = date.getMinutes()
+    var second = date.getSeconds()
     return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  },
+  formatTime: function(value) {
+    var date = getDate(value);
+    var hour = date.getHours()
+    var minute = date.getMinutes()
+    return hour+(':')+(minute>9 ? minute : '0' + minute)
   },
   formatNumber: function (n) {
     n = n.toString()
@@ -27,6 +34,12 @@ var utils = {
     var date = getDate(value);
     return date.getFullYear()+"年"+(date.getMonth()+1)+"月"
   },
+
+  strConvertDateMonth: function (value) {
+    var date = getDate(value);
+    return (date.getMonth()+1)+"月"
+  },
+
   toDate: function (value) {
     return getDate(value)
   },
@@ -44,6 +57,7 @@ var utils = {
 
 module.exports = {   
   formatTime: utils.formatTime,
+  formatDateTime: utils.formatDateTime,
   formatNumber: utils.formatNumber,
   strConvertDate: utils.strConvertDate,
   toFix: utils.toFix,
@@ -51,5 +65,6 @@ module.exports = {
   toNum: utils.toNum,//暴露接口调用
   toDate: utils.toDate,
   toTimestamp: utils.toTimestamp,
-  timestampAdd: utils.timestampAdd
+  timestampAdd: utils.timestampAdd,
+  strConvertDateMonth:utils.strConvertDateMonth
 }

@@ -11,3 +11,12 @@ export const getBillByDay = (params) => mGet("/backend/api/financial/bill/billBy
 
 // 查询账单明细
 export const getBillDetail = (params) => mGet("/backend/api/financial/bill/billDetail", params);
+
+// 统计指定月份的总收入和支出
+export const totalBalance = (params) => mGet("/backend/api/financial/bill/totalBalance", params);
+
+// 统计指定月份中各摘要的收支情况
+export const totalBillByAmount = (params) => mGet("/backend/api/financial/bill/totalBillByAmount", params);
+
+// 查询指定月份中支出（flag=-1）或收入（flag=1）的排行
+export const getBillBalanceRank = (params) => mGet("/backend/api/financial/bill/billBalanceRank", params);

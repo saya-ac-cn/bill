@@ -8,9 +8,9 @@
       <image src="/resource/img/calendar.svg"/>
     </div>
     <div class="pay-text">共支出</div>
-    <div class="pay-number">123.00</div>
+    <div class="pay-number">{{balance.pay}}</div>
     <div class="income-text">共收入</div>
-    <div class="income-number">123.00</div>
+    <div class="income-number">{{balance.income}}</div>
   </view>
   <view class="detail">
     <view class="structure">
@@ -36,9 +36,9 @@
       </view>
     </view>
     <view class="sorting">
-      <view class="sorting-schema">8月支出排行</view>
+      <view class="sorting-schema">{{utils.strConvertDateMonth(queryDate)}}支出排行</view>
       <view class="sorting-view">
-        <view class="sorting-item" bindtap="hrefToEditPage">
+        <view class="sorting-item" wx:for="{{rank}}" wx:key="tradeId" wx:for-item="item" bindtap="item.tradeId">
           <label class="sorting-item-index">1</label>
           <view class="sorting-item-value">
             <div class="trade-logo  pay-style-bk-color">
@@ -46,12 +46,12 @@
             </div>
             <div class="trade-details">
               <div class="currency-detail">
-                <div class="currency-amount">出行开支</div>
-                <div class="currency-detail">支付宝</div>
+                <div class="currency-amount">{{item.tradeAmountEntity.tag}}</div>
+                <div class="currency-detail">{{item.tradeTypeEntity.transactionType}}</div>
               </div>
               <div class="currency-number">
-                <label class="currency-number-value pay-style-color">123.00</label>
-                <label class="currency-number-time">8月5日 18:04</label>
+                <label class="currency-number-value pay-style-color">{{(1 == flag)?item.deposited:item.expenditure}}</label>
+                <label class="currency-number-time">{{utils.formatTime(item.createTime)}}</label>
               </div>
             </div>
           </view>

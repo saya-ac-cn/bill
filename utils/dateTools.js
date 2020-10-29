@@ -43,9 +43,20 @@ const addYear = (date, years) => {
   return d.getFullYear() + '-' + m + '-' + d.getDate();
 }
 
+// 如果月份数小于两位数，自动补0
+const formatMonthStr = (month) => {
+  const dates = month.split("-")
+  if (dates[1] < 10 && dates[1] > 0){
+    return dates[0]+"-0"+dates[1]
+  } else {
+    return dates[0]+"-"+dates[1]
+  }
+}
+
 module.exports = {
   formatDateTime: formatDateTime,
   addDate: addDate,
   addMonth:addMonth,
-  addYear:addYear
+  addYear:addYear,
+  formatMonthStr:formatMonthStr
 }

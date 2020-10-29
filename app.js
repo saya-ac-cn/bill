@@ -14,11 +14,11 @@ App({
         wx.showLoading({
           title: '应用加载中',
         })
+        wx.removeStorageSync('user')
         getWxUserDetail(param).then((res) => {
           wx.hideLoading()
           wx.setStorageSync('user', res.data)
         }).catch((err) => {
-          wx.removeStorageSync('user')
           wx.hideLoading()
           wx.showToast({
             title: '网络异常，请稍后重试',
