@@ -21,12 +21,12 @@
           <label class="income-desc">收入</label>
         </div>
       </view>
-      <view class="structure-item" data-id="{{234}}" bindtap="hrefToInfoPage">
+      <view class="structure-item" wx:for="{{struct}}" wx:key="index" wx:for-item="item" data-id="{{234}}" bindtap="hrefToInfoPage">
         <div class="structure-icon-pay">
            <image src="/resource/img/train-fill.svg"/>
         </div>
         <div class="structure-content-pay">
-          <label class="structure-ammount">交通出行</label>
+          <label class="structure-ammount">{{item.amountEntity.tag}}</label>
           <div class="structure-chart">
               <label class="percent-label">25.00%</label>
               <progress class="progress-chart" percent="80" color="#3eb575" active stroke-width="5" />

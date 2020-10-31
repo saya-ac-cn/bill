@@ -18,6 +18,8 @@ Page({
       income: 0.0,
       pay:0.0
     },
+    // 收支构成
+    struct:[],
     // 收支排行
     rank:[]
   },
@@ -36,6 +38,7 @@ Page({
     const queryDate = new Date().getFullYear()+"-"+(new Date().getMonth()+1)
     this.setData({queryDate},function () {
       this.getBalance(queryDate)
+      this.getBillByAmount(queryDate,1)
       this.billBalanceRank(queryDate,1)
     })
   },
@@ -114,8 +117,27 @@ Page({
   /**
    * 统计指定月份中各摘要的收支情况
    */
-  getBillByAmount: function(date) {
-    
+  getBillByAmount: function(tradeDate,flag) {
+    totalBillByAmount({tradeDate:formatMonthStr(tradeDate),flag:flag}).then((res) => {
+      wx.hideLoading()
+      if (0 === res.code) {
+        const struct = res.data
+        this.setData({struct})
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 2000     
+        })   
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常，请稍后重试',
+        icon: 'none',
+        duration: 2000     
+      })   
+    });
   },
 
   /**
@@ -166,6 +188,7 @@ Page({
     if(null !==  selectDate &&'' !== selectDate){
       this.setData({queryDate:selectDate},function(){
         this.getBalance(selectDate)
+        this.getBillByAmount(selectDate,1)
         this.billBalanceRank(selectDate,1)
       })
     }
