@@ -17,8 +17,8 @@
       <view class="structure-schema">
         <div class="structure-schema-text">收支构成</div>
         <div class="structure-schema-div">
-          <label class="pay-desc">支出</label>
-          <label class="income-desc">收入</label>
+          <label data-flag="-1" bindtap="switchFlag" class="pay-desc">支出</label>
+          <label data-flag="1" bindtap="switchFlag" class="income-desc">收入</label>
         </div>
       </view>
       <view class="structure-item" wx:for="{{struct}}" wx:key="index" wx:for-item="item" data-id="{{234}}" bindtap="hrefToInfoPage">
@@ -38,8 +38,8 @@
     <view class="sorting">
       <view class="sorting-schema">{{utils.strConvertDateMonth(queryDate)}}支出排行</view>
       <view class="sorting-view">
-        <view class="sorting-item" wx:for="{{rank}}" wx:key="tradeId" wx:for-item="item" bindtap="item.tradeId">
-          <label class="sorting-item-index">1</label>
+        <view class="sorting-item" bindtap="hrefToEditPage" wx:for="{{rank}}" wx:key="index" wx:for-item="item" data-id="{{item.tradeId}}">
+          <label class="sorting-item-index">{{index+1}}</label>
           <view class="sorting-item-value">
             <div class="trade-logo  pay-style-bk-color">
               <image src="/resource/img/train-fill.svg"/>

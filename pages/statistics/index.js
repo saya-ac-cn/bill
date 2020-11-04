@@ -37,9 +37,9 @@ Page({
   onReady: function () {
     const queryDate = new Date().getFullYear()+"-"+(new Date().getMonth()+1)
     this.setData({queryDate},function () {
-      this.getBalance(queryDate)
-      this.getBillByAmount(queryDate,1)
-      this.billBalanceRank(queryDate,1)
+      this.getBalance()
+      this.getBillByAmount()
+      this.billBalanceRank()
     })
   },
 
@@ -87,8 +87,8 @@ Page({
   /**
    * 统计指定月份的总收入和支出
    */
-  getBalance:function(date){
-    totalBalance({tradeDate:formatMonthStr(date)}).then((res) => {
+  getBalance:function(){
+    totalBalance({tradeDate:formatMonthStr(this.data.queryDate)}).then((res) => {
       wx.hideLoading()
       if (0 === res.code) {
         const pagaData = res.data
@@ -117,8 +117,8 @@ Page({
   /**
    * 统计指定月份中各摘要的收支情况
    */
-  getBillByAmount: function(tradeDate,flag) {
-    totalBillByAmount({tradeDate:formatMonthStr(tradeDate),flag:flag}).then((res) => {
+  getBillByAmount: function() {
+    totalBillByAmount({tradeDate:formatMonthStr(this.data.queryDate),flag:this.data.flag}).then((res) => {
       wx.hideLoading()
       if (0 === res.code) {
         const struct = res.data
@@ -143,8 +143,8 @@ Page({
   /**
    * 查询指定月份中支出（flag=-1）或收入（flag=1）的排行
    */
-  billBalanceRank:function(tradeDate,flag) {
-    getBillBalanceRank({tradeDate:formatMonthStr(tradeDate),flag:flag}).then((res) => {
+  billBalanceRank:function() {
+    getBillBalanceRank({tradeDate:formatMonthStr(this.data.queryDate),flag:this.data.flag}).then((res) => {
       wx.hideLoading()
       if (0 === res.code) {
         const rank = res.data
@@ -165,13 +165,6 @@ Page({
       })   
     });
   },
-
-  hrefToEditPage(e){
-    // 跳转到编辑页面
-    wx.navigateTo({
-      url:"/pages/edit-trade/index?tradeId="+e.currentTarget.dataset.id
-   })
-  },
   
   showMonthPickerPopup() {
     this.setData({ showMonthPicker: true });
@@ -181,15 +174,26 @@ Page({
     this.setData({ showMonthPicker: false });
   },
 
+  /**
+   * 查询方式切换
+   */
+  switchFlag: function(e){
+    var flag = e.currentTarget.dataset.flag
+    this.setData({flag},function(){
+      this.getBillByAmount()
+      this.billBalanceRank()
+    })
+  },
+
   // 接受子组件的传值
   selectMonth: function (e) {
     // 这里的月份是从1开始的
     let selectDate = e.detail.val
     if(null !==  selectDate &&'' !== selectDate){
       this.setData({queryDate:selectDate},function(){
-        this.getBalance(selectDate)
-        this.getBillByAmount(selectDate,1)
-        this.billBalanceRank(selectDate,1)
+        this.getBalance()
+        this.getBillByAmount()
+        this.billBalanceRank()
       })
     }
     this.closeMonthPickerPopup()
@@ -200,5 +204,12 @@ Page({
     wx.navigateTo({
       url:"/pages/statistics-info/index?id="+e.currentTarget.dataset.id
    })
+  },
+  hrefToEditPage(e){
+    // 跳转到编辑页面
+    wx.navigateTo({
+      url:"/pages/edit-trade/index?tradeId="+e.currentTarget.dataset.id
+   })
   }
+
 })
