@@ -21,7 +21,7 @@
           <label data-flag="1" bindtap="switchFlag" class="income-desc">收入</label>
         </div>
       </view>
-      <view class="structure-item" wx:for="{{struct}}" wx:key="index" wx:for-item="item" data-id="{{234}}" bindtap="hrefToInfoPage">
+      <view class="structure-item" wx:for="{{struct}}" wx:key="index" wx:for-item="item" data-ammount="{{item.amountEntity.id}}" bindtap="hrefToInfoPage">
         <div class="structure-icon-pay">
            <image src="/resource/img/train-fill.svg"/>
         </div>

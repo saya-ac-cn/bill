@@ -202,7 +202,7 @@ Page({
   hrefToInfoPage(e){
     // 跳转到详情页面
     wx.navigateTo({
-      url:"/pages/statistics-info/index?id="+e.currentTarget.dataset.id
+      url:"/pages/statistics-info/index?ammount="+e.currentTarget.dataset.ammount+"&tradeDate="+this.data.queryDate
    })
   },
   hrefToEditPage(e){

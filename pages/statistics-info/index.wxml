@@ -7,33 +7,18 @@
   <view class="list">
     <view class="list-title">详情</view>
     <view class="list-container">
-      <view class="list-item" bindtap="hrefToEditPage" data-id="{{1}}">
-            <div class="trade-logo  pay-style-bk-color">
+      <view class="list-item" bindtap="hrefToEditPage" wx:for="{{pagaData}}" wx:key="index" wx:for-item="item" data-id="{{item.tradeId}}">
+            <div class="trade-logo {{((1===item.tradeAmountEntity.flog))?'income-style-bk-color':'pay-style-bk-color'}}">
               <image src="/resource/img/train-fill.svg"/>
             </div>
             <div class="trade-details">
               <div class="currency-detail">
-                <div class="currency-amount">出行开支</div>
-                <div class="currency-detail">支付宝</div>
+                <div class="currency-amount">{{item.tradeAmountEntity.tag}}</div>
+                <div class="currency-detail">{{item.tradeTypeEntity.transactionType}}</div>
               </div>
               <div class="currency-number">
-                <label class="currency-number-value pay-style-color">123.00</label>
-                <label class="currency-number-time">8月5日 18:04</label>
-              </div>
-            </div>
-      </view>
-      <view class="list-item" bindtap="hrefToEditPage" data-id="{{1}}">
-            <div class="trade-logo  income-style-bk-color">
-              <image src="/resource/img/train-fill.svg"/>
-            </div>
-            <div class="trade-details">
-              <div class="currency-detail">
-                <div class="currency-amount">退款</div>
-                <div class="currency-detail">支付宝</div>
-              </div>
-              <div class="currency-number">
-                <label class="currency-number-value income-style-color">600.00</label>
-                <label class="currency-number-time">8月13日 13:37</label>
+                <label class="currency-number-value {{((1===item.tradeAmountEntity.flog))?'income-style-color':'pay-style-color'}}">{{(1===item.tradeAmountEntity.flog)?item.deposited:item.expenditure}}</label>
+                <label class="currency-number-time">{{item.tradeDate}}</label>
               </div>
             </div>
       </view>

@@ -20,3 +20,6 @@ export const totalBillByAmount = (params) => mGet("/backend/api/financial/bill/t
 
 // 查询指定月份中支出（flag=-1）或收入（flag=1）的排行
 export const getBillBalanceRank = (params) => mGet("/backend/api/financial/bill/billBalanceRank", params);
+
+// 查询指定月份中，某一摘要类型的收支数据
+export const getBillByAmount = (params) => mGet("/backend/api/financial/bill/billByAmount", params);
