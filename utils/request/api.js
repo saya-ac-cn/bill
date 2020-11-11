@@ -6,6 +6,12 @@ export const getWxUserDetail = (params) => mGet("/backend/wx/user", params);
 // 用户登录
 export const login = (params) => mPost("/backend/login/wx",params);
 
+// 查询所有的交易方式
+export const getMethod = () => mGet("/backend/api/financial/transactionType", null);
+
+// 查询所有的摘要
+export const getAmount = () => mGet("/backend/api/financial/transactionAmount", null);
+
 // 查询指定月份的账单（按天）
 export const getBillByDay = (params) => mGet("/backend/api/financial/bill/billByDay", params);
 

@@ -1,4 +1,5 @@
 // component/ammount/index.js
+import{getAmount} from '../../utils/request/api'
 Component({
   /**
    * 组件的属性列表
@@ -34,37 +35,13 @@ Component({
       '/resource/img/ammount/train-fill.svg','/resource/img/ammount/train-fill.svg',
       '/resource/img/ammount/train-fill.svg'
     ],
-    payAmmount:[
-      {id:1,tag:'服饰美容',logo:0},
-      {id:2,tag:'餐饮美食',logo:1},
-      {id:3,tag:'交通出行',logo:2},
-      {id:4,tag:'住房物业',logo:3},
-      {id:5,tag:'户外运动',logo:4},
-      {id:6,tag:'养车',logo:5},
-      {id:7,tag:'亲子',logo:6},
-      {id:8,tag:'医疗健康',logo:7},
-      {id:9,tag:'奖金红包',logo:8},
-      {id:10,tag:'转账',logo:9},
-      {id:11,tag:'退款',logo:10},
-      {id:12,tag:'其它人情',logo:11},
-      {id:13,tag:'酒店旅行',logo:12},
-      {id:14,tag:'教育专项开支',logo:13},
-      {id:15,tag:'研发专项开支',logo:14},
-      {id:16,tag:'日常生活日用',logo:15},
-      {id:17,tag:'通讯物流',logo:16},
-      {id:19,tag:'家电家具家装',logo:18},
-      {id:20,tag:'购物',logo:19}
-    ],
-    incomeAmmount:[
-      {id:18,tag:'职业酬劳',logo:17},
-      {id:21,tag:'生意',logo:20},
-      {id:22,tag:'投资',logo:21},
-      {id:23,tag:'其它人情',logo:22},
-      {id:24,tag:'转账',logo:23},
-      {id:25,tag:'退款',logo:24}
-    ]
+    payAmmount:[],
+    incomeAmmount:[]
   },
-
+  ready:function(){
+    console.log('Component-1 >> ready');
+    this.getAmountDate()
+  },
   /**
    * 组件的方法列表
    */
@@ -74,6 +51,26 @@ Component({
       const id = parseInt(e.currentTarget.dataset.id);
       const tag = e.currentTarget.dataset.tag
       _this.setData({selected:{id:id,tag:tag}})
+    },
+    getAmountDate: function(){
+      getAmount().then((res) => {
+        if (0 === res.code) {
+          const data = res.data
+          var payAmmount = new Array()
+          var incomeAmmount = new Array()
+          for(var i = 0; i<data.length;i++){
+            if(1 == data[i].flog){
+              incomeAmmount.push({id:data[i].id,tag:data[i].tag,logo:i})
+            }
+            if(2 == data[i].flog){
+              payAmmount.push({id:data[i].id,tag:data[i].tag,logo:i})
+            }
+          }
+          this.setData({incomeAmmount,payAmmount})
+        }
+      }).catch((err) => {
+        console.log("getAmountData error:",err) 
+      });
     },
     onConfirm: function(e) {
       // 自定义组件向父组件传值

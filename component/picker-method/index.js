@@ -1,4 +1,5 @@
 // component/picker-method/index.js
+import{getMethod} from '../../utils/request/api'
 Component({
   /**
    * 组件的属性列表
@@ -26,23 +27,30 @@ Component({
       '/resource/img/ammount/train-fill.svg','/resource/img/ammount/train-fill.svg',
       '/resource/img/ammount/train-fill.svg'
     ],
-    list:[
-      {id:1,tag:'现金',logo:0},
-      {id:2,tag:'微信',logo:1},
-      {id:3,tag:'支付宝',logo:2},
-      {id:4,tag:'QQ转账',logo:3},
-      {id:5,tag:'信用卡',logo:4},
-      {id:6,tag:'借记卡',logo:5},
-      {id:7,tag:'网银',logo:6},
-      {id:8,tag:'社保',logo:7},
-      {id:9,tag:'购物卡',logo:8}
-    ]
+    list:[]
   },
-
+  ready:function(){
+    console.log('Component-1 >> ready');
+    this.getMethodDate()
+  },
   /**
    * 组件的方法列表
    */
   methods: {
+    getMethodDate: function(){
+      getMethod().then((res) => {
+        if (0 === res.code) {
+          const data = res.data
+          var list = new Array()
+          for(var i = 0; i<data.length;i++){
+            list.push({id:data[i].id,tag:data[i].transactionType,logo:i})
+          }
+          this.setData({list})
+        }
+      }).catch((err) => {
+        console.log("getAmountData error:",err) 
+      });
+    },
     selectMethod: function(e){
       let _this = this
       const id = parseInt(e.currentTarget.dataset.id);
