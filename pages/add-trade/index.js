@@ -1,5 +1,6 @@
 // pages/add-trade/index.js
-import {formatDateTime} from "../../utils/dateTools"
+import {saveTransaction} from "../../utils/request/api"
+import {formatDateTime,formatFloatNum} from "../../utils/dateTools"
 Page({
 
   /**
@@ -49,8 +50,8 @@ Page({
       maxDate:  (new Date()).getTime(),
       currentDate: (new Date()).getTime(),
       tradeDate:formatDateTime(new Date(),'Y-M-D'),
-      dealAmount:{id:1,tag:'服饰美容'},
-      dealType:{id:3,tag:'支付宝'}
+      //dealAmount:{id:1,tag:'服饰美容'},
+      //dealType:{id:3,tag:'支付宝'}
     })
   },
 
@@ -128,7 +129,11 @@ Page({
     const index = e.target.dataset.index
     const _this = this
     var list = _this.data.list
-    list[index][type] = e.detail.value
+    if('currencyNumber' === type){
+      list[index][type] = formatFloatNum(e.detail.value)
+    }else{
+      list[index][type] = e.detail.value
+    }
     _this.setData({
       list
     })
@@ -188,4 +193,76 @@ Page({
     this.setData({dealType:e.detail.val})
     this.closeDealTypePopup()
   },
+  // 提交到后台处理 
+  saveHandle: function(){
+    let {dealType,dealAmount,tradeDate,list} = this.data
+    if(!dealType || !dealAmount){
+      wx.showToast({
+        title: '请选择交易方式和摘要',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      }) 
+      return
+    }
+    if(!tradeDate){
+      wx.showToast({
+        title: '请选择交易时间',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      }) 
+      return
+    }
+    if(!list || list.length < 1){
+      wx.showToast({
+        title: '请填写账单明细',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      }) 
+      return
+    }
+    for(var index = 0; index < list.length; index++){
+      const item = list[index]
+      if(!item.currencyNumber || !item.currencyDetails){
+        wx.showToast({
+          title: '第'+(list.length-index)+'项的交易金额和说明为空',
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        }) 
+        return
+      }
+    }
+    wx.showLoading({
+      title: '正在提交...',
+    })
+    let param = {
+        tradeType: dealType.id,
+        tradeDate: tradeDate,
+        transactionAmount: dealAmount.id,
+        infoList: list
+    }
+    saveTransaction(param).then((res) => {
+      wx.hideLoading()
+      if (0 === res.code) {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+      }else{
+        wx.showToast({
+          title: '错误提示：'+res.msg,
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常，请稍后重试',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      })   
+    });
+  }
+  
 })

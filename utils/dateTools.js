@@ -53,10 +53,20 @@ const formatMonthStr = (month) => {
   }
 }
 
+const formatFloatNum = (number) => {  //正则验证金额输入框格式
+  number = number.replace(/^(\-)*(\d+)\.(\d{6}).*$/, '$1$2.$3')
+  number = number.replace(/[\u4e00-\u9fa5]+/g, ""); //清除汉字
+  number = number.replace(/[^\d.]/g, ""); //清楚非数字和小数点
+  number = number.replace(/^\./g, ""); //验证第一个字符是数字而不是  
+  number = number.replace(".", "$#$").replace(/\./g, "").replace("$#$", "."); //只保留第一个小数点, 清除多余的 
+  return number
+}
+
 module.exports = {
   formatDateTime: formatDateTime,
   addDate: addDate,
   addMonth:addMonth,
   addYear:addYear,
-  formatMonthStr:formatMonthStr
+  formatMonthStr:formatMonthStr,
+  formatFloatNum:formatFloatNum
 }

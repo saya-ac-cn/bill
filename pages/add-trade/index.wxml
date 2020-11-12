@@ -4,7 +4,7 @@
   <view class="header">
     <view class="header-title">
       <label>添加账单</label>
-      <image src="/resource/img/op/check-fill.svg"/>
+      <image bindtap="saveHandle" src="/resource/img/op/check-fill.svg"/>
     </view>
     <view class="header-content">
       <view class="header-line">

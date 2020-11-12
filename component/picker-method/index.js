@@ -30,7 +30,7 @@ Component({
     list:[]
   },
   ready:function(){
-    console.log('Component-1 >> ready');
+    console.log('Component-1 >> ready',this.data.selected);
     this.getMethodDate()
   },
   /**
