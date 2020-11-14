@@ -1,4 +1,4 @@
-import { mGet, mPost } from "./xhr";
+import { mGet, mPost,mPut } from "./xhr";
  
 // 获取用户openId
 export const getWxUserDetail = (params) => mGet("/backend/wx/user", params);
@@ -32,3 +32,6 @@ export const getBillByAmount = (params) => mGet("/backend/api/financial/bill/bil
 
 // 申报账单
 export const saveTransaction = (params) => mPost("/backend/api/financial/insertTransaction", params);
+
+// 修改财政记录父
+export const editTransaction = (params) => mPut("/backend/api/financial/updateTransaction", params);

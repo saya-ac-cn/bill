@@ -1,6 +1,6 @@
 <!--component/picker-method/index.wxml-->
 <view class="method-component">
-  <view class="method-tag">支出</view>
+  <view class="method-tag">交易方式</view>
   <view class="method-foreach">
     <view class="method-foreach-item" wx:for="{{list}}" wx:key="id" wx:for-item="item" data-id="{{item.id}}" data-tag="{{item.tag}}" bindtap="selectMethod">
       <label class="method-logo {{(selected.id===item.id)?'selected-bk-color':''}}">

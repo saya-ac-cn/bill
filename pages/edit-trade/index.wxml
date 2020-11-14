@@ -6,25 +6,25 @@
       <div class="trade-ammount-logo  income-style-bk-color">
         <image src="/resource/img/train-fill.svg"/>
       </div>
-      <label>{{(!trade.dealAmount)?'-':trade.dealAmount.tag}}</label>
+      <label>{{(!pagaData.tradeAmountEntity)?'-':trade.dealAmount.tag}}</label>
     </view>
-    <view class="trade-number income-style-color">{{utils.toFix(1000)}}</view>
+    <view class="trade-number income-style-color">{{utils.toFix((1===pagaData.tradeAmountEntity.flog)?pagaData.deposited:pagaData.expenditure)}}</view>
     <view class="trade-infos">
       <view class="trade-info">
         <label>交易时间</label>
-        <text>{{trade.tradeDate}}</text>
+        <text>{{pagaData.tradeDate}}</text>
       </view>
       <view class="trade-info">
         <label>交易方式</label>
-        <text> {{(!trade.dealType)?'-':trade.dealType.transactionType}}</text>
+        <text> {{(!pagaData.tradeTypeEntity)?'-':pagaData.tradeTypeEntity.transactionType}}</text>
       </view>
       <view class="trade-info">
         <label>支出金额</label>
-        <text>{{utils.toFix(0)}}</text>
+        <text>{{utils.toFix(pagaData.expenditure)}}</text>
       </view>
       <view class="trade-info">
         <label>收入金额</label>
-        <text>{{utils.toFix(0)}}</text>
+        <text>{{utils.toFix(pagaData.deposited)}}</text>
       </view>
     </view>
     <view class="trade-op">
@@ -63,7 +63,7 @@
       交易方式
     </view>
     <view class="trade-picker-input" bindtap="showDealTypePopup">
-      {{(!trade.dealType)?'请选择交易方式':trade.dealType.tag}}
+      {{(!trade.dealType)?'请选择交易方式':trade.dealType.transactionType}}
     </view>
     <view class="trade-picker-label">
       选择一个日期
@@ -77,7 +77,7 @@
     <view class="trade-picker-input" bindtap="showTradeAmmountPopup">
       {{(!trade.dealAmount)?'请选择摘要':trade.dealAmount.tag}}
     </view>
-    <view class="trade-confirm">确定</view>
+    <view class="trade-confirm" bindtap="submitEditTrade">确定</view>
   </view>
 </van-popup>
 

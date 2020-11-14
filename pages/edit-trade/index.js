@@ -1,6 +1,6 @@
 // pages/edit-trade/index.js
 import {formatDateTime} from "../../utils/dateTools"
-import{getBillDetail} from '../../utils/request/api'
+import{getBillDetail,editTransaction} from '../../utils/request/api'
 Page({
 
   /**https://detail.vip.com/detail-1710614926-6918168878902755534.html
@@ -133,8 +133,19 @@ Page({
     });
   },
 
+  /**
+   * 弹出编辑父账单
+   */
   showTradePickerPopup() {
-    this.setData({ showTradePicker: true });
+    const pagaData = this.data.pagaData
+    var trade = {
+      dealType: JSON.parse(JSON.stringify(pagaData.tradeTypeEntity)),
+      dealAmount: JSON.parse(JSON.stringify(pagaData.tradeAmountEntity)),
+      tradeDate: pagaData.tradeDate,
+      deposited: pagaData.deposited,
+      expenditure: pagaData.expenditure,
+    }
+    this.setData({ showTradePicker: true,trade });
   },
 
   closeTradePickerPopup() {
@@ -181,7 +192,7 @@ Page({
     this.setData({ showDealType: true });
   },
   
-  // 接受子组件的传值
+  // 接受子组件的传值（选择了摘要）
   selectAmmount: function (e) {
     let _this = this
     let trade = _this.data.trade
@@ -189,12 +200,56 @@ Page({
     this.setData({trade});
     this.closeTradeAmmountPopup()
   },
+  // 接受子组件的传值（选择了交易方式）
   selectMethod: function (e) {
     let _this = this
     let trade = _this.data.trade
-    trade.dealType = e.detail.val
+    var dealType = e.detail.val
+    dealType.transactionType = dealType.tag
+    trade.dealType = JSON.parse(JSON.stringify(dealType))
     this.setData({trade});
     this.closeDealTypePopup()
   },
+  // 修改父账单
+  submitEditTrade: function(){
+    let _this = this
+    let{tradeId,trade,pagaData} = _this.data
+    let param = {
+      tradeId: tradeId,
+      tradeType: trade.dealType.id,
+      tradeDate: trade.tradeDate,
+      transactionAmount: trade.dealAmount.id
+    }
+    wx.showLoading({
+      title: '正在提交...',
+    })
+    editTransaction(param).then((res) => {
+      wx.hideLoading()
+      if (0 === res.code) {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })
+        pagaData.tradeDate = trade.tradeDate
+        pagaData.tradeTypeEntity = JSON.parse(JSON.stringify(trade.dealType))
+        pagaData.tradeAmountEntity = JSON.parse(JSON.stringify(trade.dealAmount))
+        this.setData({ showTradePicker: false,pagaData });
+      }else{
+        wx.showToast({
+          title: '错误提示：'+res.msg,
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常，请稍后重试',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      })   
+    });
+  }
 
 })
