@@ -47,7 +47,7 @@
           <input type="digit" data-index="{{index}}" data-type="currencyNumber" bindinput='bindInput' value="{{list[index].currencyNumber}}" maxlength="12"/>
         </view>
         <view class="card-line null-border">
-          <label class="card-line-label">详细说明</label>
+          <label class="card-line-label">交易备注</label>
           <input type="text" data-index="{{index}}" data-type="currencyDetails" bindinput='bindInput' value="{{list[index].currencyDetails}}" maxlength="20"/>
         </view>
     </view>

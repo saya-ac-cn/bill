@@ -224,7 +224,7 @@ Page({
       const item = list[index]
       if(!item.currencyNumber || !item.currencyDetails){
         wx.showToast({
-          title: '第'+(list.length-index)+'项的交易金额和说明为空',
+          title: '第'+(list.length-index)+'项的交易金额和备注为空',
           icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
           duration: 2000     
         }) 

@@ -35,3 +35,6 @@ export const saveTransaction = (params) => mPost("/backend/api/financial/insertT
 
 // 修改财政记录父
 export const editTransaction = (params) => mPut("/backend/api/financial/updateTransaction", params);
+
+// 添加添加财政子记录
+export const addTransactioninfo = (params) => mPost("/backend/api/financial/insertTransactioninfo", params);

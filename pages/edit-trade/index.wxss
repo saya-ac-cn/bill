@@ -244,10 +244,10 @@ margin-right: 16rpx;
 }
 
 .tradeInfo-view>.button-view{
-  color: #323233;
+  color: #fff;
   font-size: 32rpx;
   margin-top: 30rpx;
-  background-color: #fff;
+  background-color: #3eb575;
   padding: 16rpx 80rpx;
   border-radius: 6rpx;
 }

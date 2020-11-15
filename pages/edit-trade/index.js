@@ -1,6 +1,6 @@
 // pages/edit-trade/index.js
-import {formatDateTime} from "../../utils/dateTools"
-import{getBillDetail,editTransaction} from '../../utils/request/api'
+import {formatDateTime,formatFloatNum} from "../../utils/dateTools"
+import{getBillDetail,editTransaction,addTransactioninfo} from '../../utils/request/api'
 Page({
 
   /**https://detail.vip.com/detail-1710614926-6918168878902755534.html
@@ -15,6 +15,7 @@ Page({
     showTradePicker: false,
     // 是否显示编辑弹出层(子)
     showTradeInfoPicker: false,
+    // 对应当前的财政记录编号
     tradeId:-1,
     trade:{
       deposited: 0,
@@ -26,6 +27,7 @@ Page({
       // 交易时间
       tradeDate:null
     },
+    // 财政明细列表
     datas:[],
     // 是否显示日期选择
     showCalendar: false,
@@ -33,7 +35,10 @@ Page({
     showTradeAmmount: false,
     // 显示交易方式选择
     showDealType: false,
-    pagaData:[]
+    // 页面原始数据
+    pagaData:[],
+    // 正在添加的表单详情
+    addFromInfo:{flog:1,currencyNumber:0.00,currencyDetails:''}
   },
 
   /**
@@ -250,6 +255,83 @@ Page({
         duration: 2000     
       })   
     });
+  },
+  /**
+   * 交易类别单选改变事件
+   * @param {*} e 
+   */
+  flogChange:function(e){
+    const _this = this
+    var addFromInfo = _this.data.addFromInfo
+    addFromInfo.flog = parseInt(e.detail.value)
+    _this.setData({
+      addFromInfo
+    })
+  },
+  /**
+   * 动态绑定文本框
+   * @param {*} e 
+   */
+  bindInput:function(e){
+    const type = e.target.dataset.type
+    const _this = this
+    var addFromInfo = _this.data.addFromInfo
+    if('currencyNumber' === type){
+      addFromInfo[type] = formatFloatNum(e.detail.value)
+    }else{
+      addFromInfo[type] = e.detail.value
+    }
+    _this.setData({
+      addFromInfo
+    })
+  },
+  submitAddTradeInfo:function(){
+    const _this = this
+    let{tradeId,addFromInfo} = _this.data
+    addFromInfo.tradeId = tradeId
+    if(!addFromInfo.currencyNumber){
+      wx.showToast({
+        title: '交易金额不能为空',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      }) 
+      return
+    }
+    if(!addFromInfo.currencyDetails){
+      wx.showToast({
+        title: '交易备注不能为空',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      }) 
+      return
+    }
+    wx.showLoading({
+      title: '正在提交...',
+    })
+    addTransactioninfo(addFromInfo).then((res) => {
+      wx.hideLoading()
+      if (0 === res.code) {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+        _this.getBillDetailDate({tradeId:tradeId})
+        _this.closeTradeInfoPickerPopup()
+      }else{
+        wx.showToast({
+          title: '错误提示：'+res.msg,
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 2000     
+        })   
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常，请稍后重试',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      })   
+    });
   }
-
 })

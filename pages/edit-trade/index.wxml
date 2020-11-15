@@ -88,21 +88,21 @@
     <view class="tradeInfo-container">
       <view class="tradeInfo-input-line">
         <label>类别</label>
-        <radio-group>
-          <radio class="radio" value="1" checked="true"/>收入
-          <radio class="radio" value="2" />支出
+        <radio-group bindchange="flogChange">
+          <radio class="radio" value="1" checked="{{1===addFromInfo.flog}}"/>收入
+          <radio class="radio" value="2" checked="{{2===addFromInfo.flog}}"/>支出
         </radio-group>
       </view>
       <view class="tradeInfo-input-line">
         <label>金额</label>
-        <input type="number"/>
+        <input type="digit" data-type="currencyNumber" bindinput='bindInput' value="{{addFromInfo.currencyNumber}}" maxlength="12"/>
       </view>
       <view class="tradeInfo-input-line null-border">
         <label>备注</label>
-        <input type="text"/>
+        <input type="text" placeholder="如:工资" data-type="currencyDetails" bindinput='bindInput' value="{{addFromInfo.currencyDetails}}" maxlength="20"/>
       </view>
     </view>
-    <view class="button-view">确定</view>
+    <view class="button-view" bindtap="submitAddTradeInfo">确定</view>
   </view>
 </van-popup>
 
