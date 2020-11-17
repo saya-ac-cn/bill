@@ -1,4 +1,4 @@
-import { mGet, mPost,mPut } from "./xhr";
+import { mGet, mPost,mPut,mDelete } from "./xhr";
  
 // 获取用户openId
 export const getWxUserDetail = (params) => mGet("/backend/wx/user", params);
@@ -38,3 +38,6 @@ export const editTransaction = (params) => mPut("/backend/api/financial/updateTr
 
 // 添加添加财政子记录
 export const addTransactioninfo = (params) => mPost("/backend/api/financial/insertTransactioninfo", params);
+
+// 删除财政记录父+子
+export const removeTransaction = (params) => mDelete("/backend/api/financial/deleteTransaction?tradeId="+params, null);

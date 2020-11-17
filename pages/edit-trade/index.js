@@ -1,6 +1,6 @@
 // pages/edit-trade/index.js
 import {formatDateTime,formatFloatNum} from "../../utils/dateTools"
-import{getBillDetail,editTransaction,addTransactioninfo} from '../../utils/request/api'
+import{getBillDetail,editTransaction,addTransactioninfo,removeTransaction} from '../../utils/request/api'
 Page({
 
   /**https://detail.vip.com/detail-1710614926-6918168878902755534.html
@@ -333,5 +333,51 @@ Page({
         duration: 2000     
       })   
     });
+  },
+  deleteTransaction:function(){
+    let _this = this
+    wx.showModal({
+      title: '提示',
+      content: '您确定删除该账单么',
+      success (res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '正在提交...',
+          })
+          const params = {tradeId:parseInt(_this.data.tradeId)}
+          removeTransaction(_this.data.tradeId).then((res) => {
+            wx.hideLoading()
+            if (0 === res.code) {
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',    //如果要纯文本，不要icon，将值设为'none'
+                duration: 2000     
+              })   
+              var pages = getCurrentPages();
+              if (pages.length > 1) {
+                //上一个页面实例对象
+                var prePage = pages[pages.length - 2];
+                //关键在这里
+                prePage.onReady()
+              }
+              wx.navigateBack()
+            }else{
+              wx.showToast({
+                title: '错误提示：'+res.msg,
+                icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+                duration: 2000     
+              })   
+            }
+          }).catch((err) => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '网络异常，请稍后重试',
+              icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+              duration: 2000     
+            })   
+          });
+        }
+      }
+    })    
   }
 })

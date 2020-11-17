@@ -19,8 +19,6 @@ Page({
     this.setData({
       ammount: options.ammount,
       tradeDate: options.tradeDate
-    },function(){
-      this.getBillByAmountData()
     })
   },
 
@@ -28,7 +26,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getBillByAmountData()
   },
 
   /**

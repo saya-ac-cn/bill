@@ -28,7 +28,7 @@
       </view>
     </view>
     <view class="trade-op">
-      <div class="trade-op-delete">
+      <div class="trade-op-delete" bindtap="deleteTransaction">
         <image src="/resource/img/op/delete-bin-6-line.svg"/>
         删除
       </div>
