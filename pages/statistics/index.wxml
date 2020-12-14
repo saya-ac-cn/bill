@@ -21,16 +21,16 @@
           <label data-flag="1" bindtap="switchFlag" class="income-desc">收入</label>
         </div>
       </view>
-      <view class="structure-item" wx:for="{{struct}}" wx:key="index" wx:for-item="item" data-ammount="{{item.amountEntity.id}}" bindtap="hrefToInfoPage">
+      <view class="structure-item" wx:for="{{(1==flag)?struct.income:struct.pay}}" wx:key="index" wx:for-item="item" data-ammount="{{item.amountEntity.id}}" bindtap="hrefToInfoPage">
         <div class="structure-icon-pay">
            <image src="/resource/img/train-fill.svg"/>
         </div>
         <div class="structure-content-pay">
           <label class="structure-ammount">{{item.amountEntity.tag}}</label>
           <div class="structure-chart">
-              <label class="percent-label">25.00%</label>
-              <progress class="progress-chart" percent="80" color="#3eb575" active stroke-width="5" />
-              <label class="structure-chart-value">231.00</label>
+              <label class="percent-label">{{item.percent}}%</label>
+              <progress class="progress-chart" percent="{{item.percent}}" color="#3eb575" active stroke-width="5" />
+              <label class="structure-chart-value">{{(1 == flag)?item.deposited:item.expenditure}}</label>
           </div>
         </div>
       </view>
@@ -38,7 +38,7 @@
     <view class="sorting">
       <view class="sorting-schema">{{utils.strConvertDateMonth(queryDate)}}支出排行</view>
       <view class="sorting-view">
-        <view class="sorting-item" bindtap="hrefToEditPage" wx:for="{{rank}}" wx:key="index" wx:for-item="item" data-id="{{item.tradeId}}">
+        <view class="sorting-item" bindtap="hrefToEditPage" wx:for="{{(1==flag)?rank.income:rank.pay}}" wx:key="index" wx:for-item="item" data-id="{{item.tradeId}}">
           <label class="sorting-item-index">{{index+1}}</label>
           <view class="sorting-item-value">
             <div class="trade-logo  pay-style-bk-color">

@@ -19,9 +19,15 @@ Page({
       pay:0.0
     },
     // 收支构成
-    struct:[],
+    struct:{
+      pay:[],
+      income:[]
+    },
     // 收支排行
-    rank:[]
+    rank:{
+      pay:[],
+      income:[]
+    }
   },
 
   /**
@@ -38,8 +44,6 @@ Page({
     const queryDate = new Date().getFullYear()+"-"+(new Date().getMonth()+1)
     this.setData({queryDate},function () {
       this.getBalance()
-      this.getBillByAmount()
-      this.billBalanceRank()
     })
   },
 
@@ -104,6 +108,8 @@ Page({
           duration: 2000     
         })   
       }
+      this.getBillByAmount()
+      this.billBalanceRank()
     }).catch((err) => {
       wx.hideLoading()
       wx.showToast({
@@ -118,10 +124,21 @@ Page({
    * 统计指定月份中各摘要的收支情况
    */
   getBillByAmount: function() {
-    totalBillByAmount({tradeDate:formatMonthStr(this.data.queryDate),flag:this.data.flag}).then((res) => {
+    const _this = this
+    const totalIncome = _this.data.balance.income
+    const totalPay = _this.data.balance.pay
+    console.log(_this.data.balance)
+    totalBillByAmount({tradeDate:formatMonthStr(this.data.queryDate)}).then((res) => {
       wx.hideLoading()
       if (0 === res.code) {
-        const struct = res.data
+        let {income, pay} = res.data
+        for (let index = 0; index < income.length; index++) {
+          income[index].percent = (income[index].deposited/totalIncome*100).toFixed(2);
+        }
+        for (let index = 0; index < pay.length; index++) {
+          pay[index].percent = (pay[index].expenditure/totalPay*100).toFixed(2);
+        }
+        const struct = {income:income,pay:pay}
         this.setData({struct})
       }else{
         wx.showToast({
@@ -131,6 +148,7 @@ Page({
         })   
       }
     }).catch((err) => {
+      console.log(err)
       wx.hideLoading()
       wx.showToast({
         title: '网络异常，请稍后重试',
@@ -141,10 +159,10 @@ Page({
   },
 
   /**
-   * 查询指定月份中支出（flag=-1）或收入（flag=1）的排行
+   * 查询指定月份中收支排行
    */
   billBalanceRank:function() {
-    getBillBalanceRank({tradeDate:formatMonthStr(this.data.queryDate),flag:this.data.flag}).then((res) => {
+    getBillBalanceRank({tradeDate:formatMonthStr(this.data.queryDate)}).then((res) => {
       wx.hideLoading()
       if (0 === res.code) {
         const rank = res.data
@@ -179,10 +197,7 @@ Page({
    */
   switchFlag: function(e){
     var flag = e.currentTarget.dataset.flag
-    this.setData({flag},function(){
-      this.getBillByAmount()
-      this.billBalanceRank()
-    })
+    this.setData({flag})
   },
 
   // 接受子组件的传值
@@ -192,8 +207,6 @@ Page({
     if(null !==  selectDate &&'' !== selectDate){
       this.setData({queryDate:selectDate},function(){
         this.getBalance()
-        this.getBillByAmount()
-        this.billBalanceRank()
       })
     }
     this.closeMonthPickerPopup()
